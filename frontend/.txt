@@ -1,0 +1,13 @@
+// src/App.js
+// src/components/Navbar.js
+
+
+// src/pages/MoodLogger.js
+
+
+// src/pages/Insights.js
+
+
+// src/pages/Community.js
+
+// src/pages/Recommendations.
