@@ -16,10 +16,10 @@ const moodSchema = new mongoose.Schema(
       type: Date,
       required: [true, "Date is required"]
     },
-    tags: {
-      type: [String],
-      default: []
-    },
+    // tags: {
+    //   type: [String],
+    //   default: []
+    // },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
