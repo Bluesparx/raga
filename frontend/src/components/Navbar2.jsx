@@ -5,13 +5,13 @@ export const MenuItem = ({ setActive, active, item, children }) => {
   return (
     <div onMouseEnter={() => setActive(item)} className="relative">
       <p
-        className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
+        className="cursor-pointer  hover:opacity-[0.9] text-white"
       >
         {item}
       </p>
       {active !== null && active === item && (
         <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
-          <div className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl">
+          <div className=" bg-black backdrop-blur-sm rounded-2xl overflow-hidden border  border-white/[0.2] shadow-xl">
             <div className="w-max h-full p-4">{children}</div>
           </div>
         </div>
@@ -25,7 +25,7 @@ export const Menu = ({ setActive, children }) => {
   return (
     <nav
       onMouseLeave={() => setActive(null)}
-      className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6"
+      className="relative rounded-full border border-transparent bg-black border-white/[0.2] shadow-input flex justify-center space-x-4 px-8 py-6"
     >
       {children}
     </nav>
@@ -47,7 +47,7 @@ export const ProductItem = ({ title, description, href, src }) => {
         <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
           {title}
         </h4>
-        <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">
+        <p className="text-sm max-w-[10rem] text-neutral-300">
           {description}
         </p>
       </div>
@@ -58,19 +58,19 @@ export const ProductItem = ({ title, description, href, src }) => {
 // HoveredLink component
 export const HoveredLink = ({ children, href }) => {
   return (
-    <a href={href} className="text-neutral-700 dark:text-neutral-200 hover:text-black">
+    <a href={href} className="text-neutral-200 hover:text-black">
       {children}
     </a>
   );
 };
 
 // NavbarDemo component
-export function NavbarDemo() {
+export function Navbar2() {
   return (
     <div className="relative w-full flex items-center justify-center">
       <Navbar className="top-2" />
-      <p className="text-black dark:text-white">
-        The Navbar will show on top of the page
+      <p className="text-white">
+      
       </p>
     </div>
   );
@@ -86,8 +86,8 @@ function Navbar({ className }) {
         {/* Services Menu Item */}
         <MenuItem setActive={setActive} active={active} item="Services">
           <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/web-dev">Web Development</HoveredLink>
-            <HoveredLink href="/interface-design">Interface Design</HoveredLink>
+            <HoveredLink href="/sleep">Sleep Tracker</HoveredLink>
+            <HoveredLink href="/mood">Mood Tracker</HoveredLink>
             <HoveredLink href="/seo">Search Engine Optimization</HoveredLink>
             <HoveredLink href="/branding">Branding</HoveredLink>
           </div>
