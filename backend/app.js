@@ -1,5 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
+import './constants.js';
 import express from "express";
 import cors from "cors";
 import { connectDB } from "./DB/Database.js";
@@ -7,8 +6,9 @@ import bodyParser from "body-parser";
 import helmet from "helmet";
 import morgan from "morgan";
 import sleepRoutes from "./Routers/sleepRoutes.js";
-import moodRoutes from "./Routers/moodRoutes.js";  // Import mood routes
+import moodRoutes from "./Routers/moodRoutes.js"; 
 import userRoutes from "./Routers/userRoutes.js";
+import postRoutes from "./Routers/postRoutes.js";
 
 const app = express();
 
@@ -20,9 +20,7 @@ const allowedOrigins = [
   "*",
 ];
 
-// Middleware
-// Middleware
-app.use(express.json()); // This line is essential for parsing JSON
+app.use(express.json());
 app.use(
   cors({
     origin: "*",
@@ -39,6 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api/v1/sleep", sleepRoutes); 
 app.use("/api/v1/mood", moodRoutes);   
 app.use("/api/auth", userRoutes);
+app.use("/api/v1/post", postRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

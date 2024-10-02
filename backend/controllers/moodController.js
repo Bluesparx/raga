@@ -1,22 +1,25 @@
 import Mood from '../models/MoodModel.js';
 import User from '../models/UserModel.js';
 
-// Create a new mood entry
+
 export const createMood = async (req, res) => {
-  const { rating, description, date, tags } = req.body;
+  const { stress, energy, happiness, calmness, focus, description, date } = req.body;
 
   try {
     const newMood = new Mood({
-      rating,
+      stress, 
+      energy, 
+      happiness, 
+      calmness, 
+      focus,
       description,
       date,
-      tags,
-      user: req.user.id // assuming req.user is populated with the logged-in user's ID
+      // tags,
+      user: req.user.id 
     });
 
     const savedMood = await newMood.save();
 
-    // Update the user's mood list
     const user = await User.findById(req.user.id);
     user.moods.push(savedMood._id);
     await user.save();
@@ -27,7 +30,6 @@ export const createMood = async (req, res) => {
   }
 };
 
-// Get all mood entries for a user
 export const getUserMoods = async (req, res) => {
   try {
     const moods = await Mood.find({ user: req.user.id });
@@ -61,10 +63,13 @@ export const updateMood = async (req, res) => {
       return res.status(404).json({ message: "Mood not found" });
     }
 
-    mood.rating = req.body.rating || mood.rating;
+    mood.focus = req.body.focus || mood.focus;
+    mood.calmness = req.body.calmness || mood.calmness;
+    mood.energy = req.body.energy || mood.energy;
+    mood.happiness = req.body.happiness || mood.happiness;
+    mood.stress = req.body.stress || mood.stress;
     mood.description = req.body.description || mood.description;
     mood.date = req.body.date || mood.date;
-    mood.tags = req.body.tags || mood.tags;
 
     const updatedMood = await mood.save();
     res.status(200).json(updatedMood);
@@ -84,7 +89,6 @@ export const deleteMood = async (req, res) => {
 
     await mood.remove();
     
-    // Remove the mood from the user's list
     const user = await User.findById(req.user.id);
     user.moods = user.moods.filter(m => m.toString() !== req.params.id);
     await user.save();

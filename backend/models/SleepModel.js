@@ -5,7 +5,8 @@ const sleepSchema = new mongoose.Schema(
     sleepDuration: {
       type: Number, 
       required: [true, "Sleep duration is required"],
-      min: 0
+      min: 0,
+      max: 24
     },
     sleepQuality: {
       type: Number, 

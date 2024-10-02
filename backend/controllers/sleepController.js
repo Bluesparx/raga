@@ -1,7 +1,6 @@
 import Sleep from '../models/SleepModel.js';
 import User from '../models/UserModel.js';
 
-// Create a new sleep entry
 export const createSleep = async (req, res) => {
   const { sleepDuration, sleepQuality, sleepDate } = req.body;
 
@@ -25,7 +24,7 @@ export const createSleep = async (req, res) => {
   }
 };
 
-export const getUserSleepEntries = async (req, res) => {
+export const getUserSleep = async (req, res) => {
   try {
     const sleeps = await Sleep.find({ user: req.user.id });
     res.status(200).json(sleeps);
