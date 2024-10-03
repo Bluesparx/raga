@@ -3,6 +3,7 @@ import { registerAPI } from '../utils/apiRequest';
 import { Label } from "./ui/label";
 import { Input } from "./ui/input"; // Assuming this is a custom component
 import { useNavigate } from "react-router-dom";
+import { NavbarDemo } from "./NavbarDemo";
 
 export function SignupFormDemo() {
   const [formData, setFormData] = useState({
@@ -12,7 +13,7 @@ export function SignupFormDemo() {
     confirmPassword: '',
   });
 
-  const nvigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,7 +49,10 @@ export function SignupFormDemo() {
   };
 
   return (
-    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black">
+    <>
+    <NavbarDemo/>
+    <Vortex z-10>
+    <div className="max-w-md w-full z-20 mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black">
       <h2 className="font-bold text-xl text-neutral-200">
         Welcome to Aceternity
       </h2>
@@ -114,6 +118,8 @@ export function SignupFormDemo() {
         </button>
       </form>
     </div>
+    </Vortex>
+    </>
   );
 }
 

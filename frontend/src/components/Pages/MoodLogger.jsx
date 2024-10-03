@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DiscreteSliderMarks from '../DiscreteSliderMarks';
 import { Navbar2 } from '../Navbar2';
 import { Vortex } from '../ui/vortex';
+import {addMoodEntryAPI } from '../../utils/apiRequest';
 
 const MoodLogger = () => {
   const [mood, setMood] = useState({
@@ -21,9 +22,32 @@ const MoodLogger = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(mood);
+    
+    const { calmness, date, description, energy, focus, happiness, stress} = mood;
+    setMood({
+      stress: 50,
+      happiness: 50,
+      energy: 50,
+      focus: 50,
+      calmness: 50,
+      description: '',
+      date: '',
+    });
+    if (!calmness || !date || !description || !energy ||  !focus|| !happiness || !stress) {
+      console.error("Please fill all fields");
+      return;
+    }
+
+    try {
+      const response = await addMoodEntryAPI({ calmness, date, description, energy, focus, happiness, stress});
+      console.log('Mood entry successful', response);
+
+    } catch (error) {
+      console.error('Could not log mood:', error);
+    }
   };
 
   return (

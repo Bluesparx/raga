@@ -2,32 +2,59 @@ import mongoose from "mongoose";
 
 const moodSchema = new mongoose.Schema(
   {
-    rating: {
+    calmness: {
       type: Number,
-      required: [true, "Mood rating is required"],
-      min: 1,
-      max: 10
+      required: [true, "Calmness rating is required"],
+      min: 0,
+      max: 100,
+    },
+    energy: {
+      type: Number,
+      required: [true, "Energy rating is required"],
+      min: 0,
+      max: 100,
+    },
+    focus: {
+      type: Number,
+      required: [true, "Focus rating is required"],
+      min: 0,
+      max: 100,
+    },
+    happiness: {
+      type: Number,
+      required: [true, "Happiness rating is required"],
+      min: 0,
+      max: 100,
+    },
+    stress: {
+      type: Number,
+      required: [true, "Stress rating is required"],
+      min: 0,
+      max: 100,
     },
     description: {
       type: String,
-      required: [true, "Description is required"]
+      required: [true, "Description is required"],
     },
     date: {
       type: Date,
-      required: [true, "Date is required"]
+      default: Date.now, 
+      required: [true, "Date is required"],
     },
-    // tags: {
-    //   type: [String],
-    //   default: []
-    // },
+    tags: {
+      type: [String],
+      default: [], 
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true
-    }
+      required: true,
+    },
   },
-  { timestamps: true }
+  { timestamps: true } 
 );
+
+moodSchema.index({ user: 1, date: -1 }); 
 
 const Mood = mongoose.model("Mood", moodSchema);
 

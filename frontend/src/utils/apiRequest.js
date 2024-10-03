@@ -3,10 +3,13 @@ const API_BASE_URL = `${host}/api/v1`;
 
 // API request function
 const apiRequest = async (url, method, body = null) => {
+  const token = localStorage.getItem('token');
+
   const options = {
     method,
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}` 
     },
     credentials: 'include', 
     body: body ? JSON.stringify(body) : null
@@ -35,11 +38,11 @@ export const getSleepByIdAPI = (id) => apiRequest(`${API_BASE_URL}/sleep/getSlee
 export const updateSleepEntryAPI = (id, data) => apiRequest(`${API_BASE_URL}/sleep/updateSleep/${id}`, 'PUT', data);
 export const deleteSleepEntryAPI = (id) => apiRequest(`${API_BASE_URL}/sleep/deleteSleep/${id}`, 'DELETE');
 
-export const addMoodEntryAPI = (data) => apiRequest(`${API_BASE_URL}/mood/createMood`, 'POST', data);
-export const getUserMoodAPI = () => apiRequest(`${API_BASE_URL}/mood/getUserMood`, 'GET');
-export const getMoodByIdAPI = (id) => apiRequest(`${API_BASE_URL}/mood/getMoodById/${id}`, 'GET');
-export const updateMoodEntryAPI = (id, data) => apiRequest(`${API_BASE_URL}/mood/updateMood/${id}`, 'PUT', data);
-export const deleteMoodEntryAPI = (id) => apiRequest(`${API_BASE_URL}/mood/deleteMood/${id}`, 'DELETE');
+export const addMoodEntryAPI = (data) => apiRequest(`${API_BASE_URL}/mood`, 'POST', data); 
+export const getUserMoodAPI = () => apiRequest(`${API_BASE_URL}/mood/user`, 'GET'); 
+export const getMoodByIdAPI = (id) => apiRequest(`${API_BASE_URL}/mood/${id}`, 'GET'); 
+export const updateMoodEntryAPI = (id, data) => apiRequest(`${API_BASE_URL}/mood/${id}`, 'PUT', data);
+export const deleteMoodEntryAPI = (id) => apiRequest(`${API_BASE_URL}/mood/${id}`, 'DELETE');
 
 export const createPostAPI = (data) => apiRequest(`${API_BASE_URL}/post`, 'POST', data);
 export const getAllPostsAPI = () => apiRequest(`${API_BASE_URL}/post`, 'GET');
