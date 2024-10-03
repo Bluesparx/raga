@@ -17,26 +17,29 @@ const port = process.env.PORT;
 connectDB();
 
 const allowedOrigins = [
-  "*",
+  'http://localhost:5173',
 ];
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
+
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+
 
 
 // Routes
 app.use("/api/v1/sleep", sleepRoutes); 
 app.use("/api/v1/mood", moodRoutes);   
-app.use("/api/auth", userRoutes);
+app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/post", postRoutes);
 
 app.get("/", (req, res) => {
