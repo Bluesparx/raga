@@ -1,11 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
+import { registerAPI } from '../utils/apiRequest';
 import { Label } from "./ui/label";
-import { Input } from "./ui/input";
+import { Input } from "./ui/input"; // Assuming this is a custom component
+import { useNavigate } from "react-router-dom";
 
 export function SignupFormDemo() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted");
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const nvigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formData)
+    
+    const {name, email, password, confirmPassword} = formData;
+
+    if (!name || !email || !password || !confirmPassword) {
+      console.error("Please fill all fields");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      console.error("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await registerAPI({name, email, password});
+      console.log('Registration successful', response);
+      navigate('/');
+    } catch (error) {
+      console.error('Could not register:', error);
+    }
   };
 
   return (
@@ -17,27 +56,53 @@ export function SignupFormDemo() {
         Login to aceternity if you can because we don&apos;t have a login flow yet
       </p>
       <form className="my-8" onSubmit={handleSubmit}>
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
             <Label htmlFor="firstname">First name</Label>
-            <Input id="firstname" placeholder="Tyler" type="text" required />
+            <Input
+              name="name"
+              id="name"
+              value={formData.firstname}
+              onChange={handleChange}
+              placeholder="Tyler"
+              type="text"
+              required
+            />
           </LabelInputContainer>
-          <LabelInputContainer>
-            <Label htmlFor="lastname">Last name</Label>
-            <Input id="lastname" placeholder="Durden" type="text" required />
-          </LabelInputContainer>
-        </div>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="projectmayhem@fc.com" type="email" required />
+          <Input
+            name="email"
+            id="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="projectmayhem@fc.com"
+            type="email"
+            required
+          />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" placeholder="••••••••" type="password" required />
+          <Input
+            name="password"
+            id="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="••••••••"
+            type="password"
+            required
+          />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="twitterpassword">Your Twitter Password</Label>
-          <Input id="twitterpassword" placeholder="••••••••" type="password" required />
+          <Label htmlFor="confirmPassword">Confirm Password</Label>
+          <Input
+            name="confirmPassword"
+            id="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            placeholder="••••••••"
+            type="password"
+            required
+          />
         </LabelInputContainer>
 
         <button

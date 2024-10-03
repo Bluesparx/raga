@@ -1,23 +1,49 @@
-const host = process.env.REACT_APP_API_HOST || "http://localhost:5000";
+const host = import.meta.env.REACT_APP_API_HOST || "http://localhost:5000";
+const API_BASE_URL = `${host}/api/v1`;
 
-export const registerAPI = `${host}/api/auth/register`;
-export const loginAPI = `${host}/api/auth/login`;
+// API request function
+const apiRequest = async (url, method, body = null) => {
+  const options = {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include', 
+    body: body ? JSON.stringify(body) : null
+  };
 
-export const addSleepEntryAPI = `${host}/api/v1/sleep/createSleep`;
-// export const getUserSleepAPI = `${host}/api/v1/sleep/getUserSleep`;
-export const getSleepByIdAPI = (id) => `${host}/api/v1/sleep/getSleepById/${id}`;
-export const updateSleepEntryAPI = (id) => `${host}/api/v1/sleep/updateSleep/${id}`;
-export const deleteSleepEntryAPI = (id) => `${host}/api/v1/sleep/deleteSleep/${id}`;
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      const errorData = await response.json(); 
+      throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.message || "Unknown error"}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('API Request Error:', error);
+    throw error; 
+  }
+};
 
-export const addMoodEntryAPI = `${host}/api/v1/mood/createMood`;
-// export const getUserMoodAPI = `${host}/api/v1/mood/getUserMood`;
-export const getMoodByIdAPI = (id) => `${host}/api/v1/mood/getMoodById/${id}`;
-export const updateMoodEntryAPI = (id) => `${host}/api/v1/mood/updateMood/${id}`;
-export const deleteMoodEntryAPI = (id) => `${host}/api/v1/mood/deleteMood/${id}`;
+// API functions
+export const registerAPI = (data) => apiRequest(`${API_BASE_URL}/user/register`, 'POST', data);
+export const loginAPI = (data) => apiRequest(`${API_BASE_URL}/user/login`, 'POST', data);
 
-export const createPostAPI = `${host}/api/v1/post/`;
-export const getAllPostsAPI = `${host}/api/v1/post/`; 
-export const getPostByIdAPI = (id) => `${host}/api/v1/post/${id}`; 
-export const updatePostAPI = (id) => `${host}/api/v1/post/${id}`;
-export const deletePostAPI = (id) => `${host}/api/v1/post/${id}`; 
-export const toggleLikePostAPI = (id) => `${host}/api/v1/post/like/${id}`;
+export const addSleepEntryAPI = (data) => apiRequest(`${API_BASE_URL}/sleep/createSleep`, 'POST', data);
+export const getUserSleepAPI = () => apiRequest(`${API_BASE_URL}/sleep/getUserSleep`, 'GET');
+export const getSleepByIdAPI = (id) => apiRequest(`${API_BASE_URL}/sleep/getSleepById/${id}`, 'GET');
+export const updateSleepEntryAPI = (id, data) => apiRequest(`${API_BASE_URL}/sleep/updateSleep/${id}`, 'PUT', data);
+export const deleteSleepEntryAPI = (id) => apiRequest(`${API_BASE_URL}/sleep/deleteSleep/${id}`, 'DELETE');
+
+export const addMoodEntryAPI = (data) => apiRequest(`${API_BASE_URL}/mood/createMood`, 'POST', data);
+export const getUserMoodAPI = () => apiRequest(`${API_BASE_URL}/mood/getUserMood`, 'GET');
+export const getMoodByIdAPI = (id) => apiRequest(`${API_BASE_URL}/mood/getMoodById/${id}`, 'GET');
+export const updateMoodEntryAPI = (id, data) => apiRequest(`${API_BASE_URL}/mood/updateMood/${id}`, 'PUT', data);
+export const deleteMoodEntryAPI = (id) => apiRequest(`${API_BASE_URL}/mood/deleteMood/${id}`, 'DELETE');
+
+export const createPostAPI = (data) => apiRequest(`${API_BASE_URL}/post`, 'POST', data);
+export const getAllPostsAPI = () => apiRequest(`${API_BASE_URL}/post`, 'GET');
+export const getPostByIdAPI = (id) => apiRequest(`${API_BASE_URL}/post/${id}`, 'GET');
+export const updatePostAPI = (id, data) => apiRequest(`${API_BASE_URL}/post/${id}`, 'PUT', data);
+export const deletePostAPI = (id) => apiRequest(`${API_BASE_URL}/post/${id}`, 'DELETE');
+export const toggleLikePostAPI = (id) => apiRequest(`${API_BASE_URL}/post/like/${id}`, 'POST');
