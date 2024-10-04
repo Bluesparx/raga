@@ -45,7 +45,7 @@ export function SignupFormDemo() {
       console.log('Sign up successful', response);
       localStorage.setItem('token', response.token); 
       login(); 
-      navigate('/');
+      navigate('/home');
     } catch (error) {
       console.error('Could not sign up:', error);
     }

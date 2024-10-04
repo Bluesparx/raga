@@ -7,9 +7,6 @@ const API_BASE_URL = `${host}/api/v1`;
 const apiRequest = async (url, method, data = null) => {
   const token = localStorage.getItem('token');
 
-  if (!token) {
-    throw new Error('Authentication token not found. Please login.');
-  }
 
   const config = {
     method,

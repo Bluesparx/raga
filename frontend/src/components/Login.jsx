@@ -39,7 +39,7 @@ export function LoginForm() {
       console.log('Login successful', response);
       localStorage.setItem('token', response.token); 
       login(); 
-      navigate('/');
+      navigate('/home');
     } catch (error) {
       console.error('Could not log in:', error);
     }

@@ -19,6 +19,8 @@ import MoodGraphPage from "./components/Pages/MoodGraphPage.jsx";
 import SleepGraphPage from "./components/Pages/SleepGraphPage.jsx";
 import ContactUsPage from "./components/Pages/ContactUsPage.jsx";
 import AboutUsPage from "./components/Pages/AboutUsPage.jsx";
+import AboutUsLogOut from "./components/Pages/AboutUsLogout.jsx";
+import HomeLoggedOut from "./components/Pages/HomeLoggedOut.jsx";
 
 
 function App() {
@@ -28,7 +30,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<SignupFormDemo />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomeLoggedOut />} />
           <Route path="/home" element={<Home />} />
           <Route path="/mood" element={<MoodLogger />} />
           <Route path="/sleep" element={<SleepTracker />} />
@@ -37,6 +39,7 @@ function App() {
           <Route path="/mgraph" element={<MoodGraphPage />} />
           <Route path="/sgraph" element={<SleepGraphPage />} />
           <Route path="/contact" element={<ContactUsPage />} />
+          <Route path="/aboutus" element={<AboutUsLogOut />} />
           <Route path="/blogs" element={<Dashboard/>}/>
           <Route path="/about" element={<AboutUsPage/>}/>
         </Routes>
