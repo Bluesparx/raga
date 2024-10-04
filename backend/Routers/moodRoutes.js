@@ -5,7 +5,7 @@ import {
     updateMood, 
     deleteMood, 
     getUserMoods 
-} from "../controllers/MoodController.js";
+} from "../controllers/moodController.js";
 import { protect } from "../middleware/authMiddleware.js"; 
 
 const router = express.Router();

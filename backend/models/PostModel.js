@@ -8,9 +8,9 @@ const postSchema = new mongoose.Schema(
       minlength: [5, "Post title must be at least 5 characters long"],
       maxlength: [50, "Post title cannot exceed 50 characters"]
     },
-    description: {
+    content: {
       type: String,
-      required: [true, "Description is required"]
+      required: [true, "content is required"]
     },
     date: {
       type: Date,

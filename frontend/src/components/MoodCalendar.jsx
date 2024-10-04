@@ -12,21 +12,12 @@ const MoodCalendar = () => {
         // Fetch moods from the database
         const fetchMoods = async () => {
             try {
-                const response = await fetch('/api/moods'); // Adjust the API endpoint as needed
-                const data = await response.json();
-                const moodMap = {};
-
-                // Transform data into a key-value format
-                data.forEach(moodEntry => {
-                    const date = new Date(moodEntry.date).toLocaleDateString(); // Format date
-                    moodMap[date] = moodEntry.mood; // Assuming moodEntry has 'date' and 'mood'
-                });
-
-                setMoods(moodMap);
+              const response = await getUserMoodAPI();
+              setMoods(response);
             } catch (error) {
-                console.error('Error fetching moods:', error);
+              console.error("Error fetching moods:", error);
             }
-        };
+          };
 
         fetchMoods();
     }, []);

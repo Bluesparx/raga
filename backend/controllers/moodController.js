@@ -30,9 +30,11 @@ export const createMood = async (req, res) => {
 
 export const getUserMoods = async (req, res) => {
   try {
-    const moods = await Mood.find({ user: req.user.id });
+    console.log(req.user);
+    const moods = await Mood.find({user: req.user.id});
     res.status(200).json(moods);
   } catch (error) {
+    console.error("Error in getUserMoods:", error); 
     res.status(500).json({ message: error.message });
   }
 };

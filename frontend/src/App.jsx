@@ -13,6 +13,7 @@ import MemeGenerator from "./components/Pages/JokeGenerator.jsx";
 import JokeGenerator from "./components/Pages/JokeGenerator.jsx";
 import MoodCalendar from "./components/MoodCalendar.jsx";
 import MoodCalendarPage from "./components/Pages/MoodCalendarPage.jsx";
+import Dashboard from "./components/Pages/Dashboard.jsx";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/sleep" element={<SleepTracker />} />
           <Route path="/joke" element={<JokeGenerator />} />
           <Route path="/calendar" element={<MoodCalendarPage />} />
+          <Route path="/blogs" element={<Dashboard/>}/>
         </Routes>
       </div>
     </Router>

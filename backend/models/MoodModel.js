@@ -54,8 +54,6 @@ const moodSchema = new mongoose.Schema(
   { timestamps: true } 
 );
 
-moodSchema.index({ user: 1, date: -1 }); 
-
 const Mood = mongoose.model("Mood", moodSchema);
 
 export default Mood;
