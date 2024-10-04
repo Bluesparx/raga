@@ -78,7 +78,7 @@ function Navbar({ className }) {
   const [active, setActive] = useState(null);
 
   return (
-    <div className={`fixed top-10 inset-x-0 my-3 max-w-2xl mx-auto z-50 ${className}`}>
+    <div className={`fixed top-20 inset-x-0 my-3 max-w-2xl mx-auto z-50 ${className}`}>
       <Menu setActive={setActive}>
         {/* Home */}
         <HoveredLink href="/"><MenuItem item="Home"> </MenuItem></HoveredLink>

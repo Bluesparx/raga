@@ -13,7 +13,7 @@ const PostItem = ({ post, onPostLiked }) => {
   };
 
   return (
-    <div className="border bg-white p-4 mb-4 rounded">
+    <div className="border-sm bg-violet-400 bg-opacity-70 p-4 mb-4 rounded">
       <h2 className="text-xl font-bold">{post.title}</h2>
       <p className="mt-2">{post.content}</p>
       {post.tags.length > 0 && (

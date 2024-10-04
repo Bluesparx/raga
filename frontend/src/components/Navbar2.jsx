@@ -109,6 +109,7 @@ function Navbar({ className }) {
             <HoveredLink href="/mood">Mood Tracker</HoveredLink>
             <HoveredLink href="/joke">Joke Generator</HoveredLink>
             <HoveredLink href="/calendar">Calendar</HoveredLink>
+            <HoveredLink href="/blogs">Community</HoveredLink>
           </div>
         </MenuItem>
 
