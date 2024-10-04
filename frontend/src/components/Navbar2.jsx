@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import { useAuth } from "../utils/authProvider";
 
 // MenuItem component
 export const MenuItem = ({ setActive, active, item, children }) => {
@@ -57,13 +58,18 @@ export const ProductItem = ({ title, description, href, src }) => {
 };
 
 // HoveredLink component
-export const HoveredLink = ({ children, href }) => {
+export const HoveredLink = ({ children, href, onClick }) => {
   return (
-    <a href={href} className="text-neutral-200 hover:text-black">
+    <a
+      href={href || '#'}
+      onClick={onClick ? (e) => { e.preventDefault(); onClick(); } : null}
+      className="text-neutral-200 hover:text-black"
+    >
       {children}
     </a>
   );
 };
+
 
 // NavbarDemo component
 export function Navbar2() {
@@ -80,6 +86,18 @@ export function Navbar2() {
 // Navbar component
 function Navbar({ className }) {
   const [active, setActive] = useState(null);
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const response = await logout();
+      console.log('Logout successful', response);
+      navigate('/');
+    } catch (error) {
+      console.error('Could not log in:', error);
+    }
+  }
 
   return (
     <div className={`fixed top-10 inset-x-0 max-w-2xl mx-auto z-50 ${className}`}>
@@ -107,9 +125,10 @@ function Navbar({ className }) {
         {/* Pricing Menu Item */}
         <MenuItem setActive={setActive} active={active} item="About">
           <div className="flex flex-col space-y-4 text-sm">
+            <HoveredLink href="/home">Home</HoveredLink>
             <HoveredLink href="/contact">Contact Us</HoveredLink>
             <HoveredLink href="/about">About us</HoveredLink>
-            <HoveredLink href="/home">Logout</HoveredLink>
+            <HoveredLink onClick={handleLogout}>Logout</HoveredLink>
             
           </div>
         </MenuItem>

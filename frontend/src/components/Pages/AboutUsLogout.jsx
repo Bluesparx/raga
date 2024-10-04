@@ -1,12 +1,12 @@
 import React from 'react'
 import AboutUs from '../AboutUs'
 import { Vortex } from '../ui/vortex'
-import { Navbar2 } from '../Navbar2'
-const AboutUsPage = () => {
+import { NavbarDemo } from '../NavbarDemo'
+const AboutUsLogOut = () => {
   return (
     <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
     <Vortex>
-      <Navbar2 />
+      <NavbarDemo />
       <div
         style={{
           display: "flex",
@@ -14,7 +14,7 @@ const AboutUsPage = () => {
           justifyContent: "center",
           marginTop: "7rem",
           paddingBottom: "4rem",
-        }} className='shadow shadow-violet-400 '
+        }}
       >
         <div
           style={{
@@ -23,9 +23,8 @@ const AboutUsPage = () => {
             padding: "40px",
             backgroundColor: "black",
             borderRadius: "12px",
-            boxShadow: "0 1px 10px rgba(0, 0, 0, 0.3)",
             border: "1px solid rgba(255, 255, 255, 0.2)",
-          }}
+          }}  className='shadow shadow-violet-400 '
         >
           <h1
             style={{
@@ -46,4 +45,4 @@ const AboutUsPage = () => {
   )
 }
 
-export default AboutUsPage
+export default AboutUsLogOut

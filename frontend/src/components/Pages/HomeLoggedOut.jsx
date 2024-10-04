@@ -2,13 +2,13 @@ import React from 'react'
 import { WavyBackgroundDemo } from '../WavyBackgroundDemo'
 import { Navbar2 } from '../Navbar2'
 import { NavbarDemo } from '../NavbarDemo'
-const Home = () => {
+const HomeLoggedOut = () => {
   return (
     <div>
-      <Navbar2/>
+      <NavbarDemo/>
       <WavyBackgroundDemo/>
     </div>
   )
 }
 
-export default Home
+export default HomeLoggedOut
