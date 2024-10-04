@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const host = import.meta.env.REACT_APP_API_HOST || "http://localhost:5000";
+const host = 'https://zenzone.onrender.com';
+// const host = 'http://localhost:5000';
 const API_BASE_URL = `${host}/api/v1`;
 
 // API request function
