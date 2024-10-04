@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "emailjs-com": "^3.2.0",
-    "react-hot-toast": "^2.4.1"
-  }
-}
