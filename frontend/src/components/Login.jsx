@@ -38,8 +38,8 @@ export function LoginForm() {
       const response = await loginAPI({ email, password });
       console.log('Login successful', response);
       localStorage.setItem('token', response.token); 
-      login(); 
-      navigate('/home');
+      login(response.token); 
+      navigate('/');
     } catch (error) {
       console.error('Could not log in:', error);
     }
@@ -48,7 +48,7 @@ export function LoginForm() {
   return (
     <>
     <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
-      <NavbarDemo className='mb-4'/>
+      {/* <NavbarDemo className='mb-4'/> */}
       <Vortex className='mt-20 pt-10 z-10'>
       
       <div className="w-full bg-black mx-auto rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">

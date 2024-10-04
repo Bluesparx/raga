@@ -8,30 +8,32 @@ import { NavbarDemo } from "./components/NavbarDemo"; // Your demo navbar compon
 import SleepTracker from "./components/Pages/SleepTracker";
 import { LoginForm } from "./components/Login";
 import { SignupFormDemo } from "./components/SignupDemoForm";
-import { useAuth } from "./utils/authProvider.jsx"; // Import the useAuth hook
-import MemeGenerator from "./components/Pages/JokeGenerator.jsx"; // Consider renaming if both components are distinct
+import { useAuth } from "./utils/authProvider.jsx"; 
 import JokeGenerator from "./components/Pages/JokeGenerator.jsx";
-import MoodCalendar from "./components/MoodCalendar.jsx";
 import MoodCalendarPage from "./components/Pages/MoodCalendarPage.jsx";
 import Dashboard from "./components/Pages/Dashboard.jsx";
-import MoodDemo from './components/Pages/MoodDemo.jsx';
 import MoodGraphPage from "./components/Pages/MoodGraphPage.jsx";
 import SleepGraphPage from "./components/Pages/SleepGraphPage.jsx";
 import ContactUsPage from "./components/Pages/ContactUsPage.jsx";
 import AboutUsPage from "./components/Pages/AboutUsPage.jsx";
 import AboutUsLogOut from "./components/Pages/AboutUsLogout.jsx";
 import HomeLoggedOut from "./components/Pages/HomeLoggedOut.jsx";
+import { AuthProvider } from "./utils/authProvider.jsx";
 
+import NavbarSwitch from "./utils/navbarSwitch.jsx";
 
 function App() {
+  const token = useAuth();
   return (
+    <AuthProvider>
     <Router>
-      <div className="App">
+      <div className="App bg-black">
+        <NavbarSwitch/>
         <Routes>
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<SignupFormDemo />} />
-          <Route path="/" element={<HomeLoggedOut />} />
-          <Route path="/home" element={<Home />} />
+          {/* <Route path="/" element={<HomeLoggedOut />} /> */}
+          <Route path="/" element={<Home />} />
           <Route path="/mood" element={<MoodLogger />} />
           <Route path="/sleep" element={<SleepTracker />} />
           <Route path="/joke" element={<JokeGenerator />} />
@@ -39,13 +41,13 @@ function App() {
           <Route path="/mgraph" element={<MoodGraphPage />} />
           <Route path="/sgraph" element={<SleepGraphPage />} />
           <Route path="/contact" element={<ContactUsPage />} />
-          <Route path="/aboutus" element={<AboutUsLogOut />} />
+          {/* <Route path="/aboutus" element={<AboutUsLogOut />} /> */}
           <Route path="/blogs" element={<Dashboard/>}/>
           <Route path="/about" element={<AboutUsPage/>}/>
         </Routes>
-        
       </div>
     </Router>
+    </AuthProvider>
   );
 }
 

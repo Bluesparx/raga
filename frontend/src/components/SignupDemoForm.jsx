@@ -6,7 +6,6 @@ import { registerAPI } from "../utils/apiRequest"; // Assuming you have a signup
 import { useAuth } from "../utils/authProvider";
 import { Vortex } from './ui/vortex';
 import { NavbarDemo } from "./NavbarDemo";
-import { toast } from 'react-hot-toast'; // Import the toast function
 
 export function SignupFormDemo() {
   const [formData, setFormData] = useState({
@@ -44,19 +43,17 @@ export function SignupFormDemo() {
       const response = await registerAPI({ name, email, password });
       console.log('Sign up successful', response);
       localStorage.setItem('token', response.token); 
-      login(); 
-      toast.success("Sign up successful! Redirecting...");
-      navigate('/home');
+      login(response.token); 
+      navigate('/');
     } catch (error) {
       console.error('Could not sign up:', error);
-      toast.error('Could not sign up. Please try again.');
     }
   };
 
   return (
     <>
       <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
-        <NavbarDemo className='mb-4' />
+        {/* <NavbarDemo className='mb-4' /> */}
         <Vortex className='mt-20 pt-10 z-10'>
           <div className="w-full bg-black mx-auto rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="shadow shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8">

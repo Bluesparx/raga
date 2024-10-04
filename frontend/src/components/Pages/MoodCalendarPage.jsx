@@ -9,7 +9,7 @@ const MoodCalendarPage = () => {
     return (
         <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
       <Vortex>
-        <Navbar2 />
+        {/* <Navbar2 /> */}
         <div
           style={{
             display: "flex",

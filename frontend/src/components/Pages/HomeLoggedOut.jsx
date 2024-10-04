@@ -5,7 +5,7 @@ import { NavbarDemo } from '../NavbarDemo'
 const HomeLoggedOut = () => {
   return (
     <div>
-      <NavbarDemo/>
+      {/* <NavbarDemo/> */}
       <WavyBackgroundDemo/>
     </div>
   )

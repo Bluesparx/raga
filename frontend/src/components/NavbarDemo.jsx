@@ -84,12 +84,13 @@ function Navbar({ className }) {
         <HoveredLink href="/"><MenuItem item="Home"> </MenuItem></HoveredLink>
 
         {/* About*/}
-        <HoveredLink href="/aboutus"><MenuItem item="About"> </MenuItem></HoveredLink>
+        <HoveredLink href="/about"><MenuItem item="About"> </MenuItem></HoveredLink>
          
 
         {/* login*/}
         <HoveredLink href="/login"><MenuItem item="Login"> </MenuItem></HoveredLink>
         <HoveredLink href="/register"><MenuItem item="Sign Up"> </MenuItem></HoveredLink>
+        <HoveredLink href="/contact">Contact Us</HoveredLink>
       </Menu>
     </div>
   );

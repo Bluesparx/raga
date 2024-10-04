@@ -10,7 +10,7 @@ const  ContactUsPage = () => {
         <>
             <div style={{ backgroundColor: 'black', minHeight: '100vh' }}>
                 <Vortex>
-                    <Navbar2 />
+                    {/* <Navbar2 /> */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '7rem', paddingBottom: '4rem' }}>
                        
                             <ContactUsForm/>

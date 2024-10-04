@@ -6,7 +6,7 @@ const AboutUsLogOut = () => {
   return (
     <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
     <Vortex>
-      <NavbarDemo />
+      {/* <NavbarDemo /> */}
       <div
         style={{
           display: "flex",

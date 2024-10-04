@@ -119,7 +119,7 @@ const MoodLogger = () => {
     <>
       <div style={{ backgroundColor: 'black' }}>
         <Vortex>
-          <Navbar2 />
+          {/* <Navbar2 /> */}
           <div
             style={{
               display: 'flex',

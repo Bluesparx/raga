@@ -5,7 +5,7 @@ import { NavbarDemo } from '../NavbarDemo'
 const Home = () => {
   return (
     <div>
-      <Navbar2/>
+      {/* <Navbar2/> */}
       <WavyBackgroundDemo/>
     </div>
   )

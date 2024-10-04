@@ -8,7 +8,9 @@
   padding: 2rem;
   text-align: center;
 }
-
+.App {
+  background: black;
+}
 .logo {
   height: 6em;
   padding: 1.5em;

@@ -106,7 +106,7 @@ function Navbar({ className }) {
             
       <Menu setActive={setActive}>
         {/* Services Menu Item */}
-        <HoveredLink href="/home">Home</HoveredLink>
+        <HoveredLink href="/">Home</HoveredLink>
         <MenuItem setActive={setActive} active={active} item="Tracker">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink href="/sleep">Sleep Tracker</HoveredLink>
