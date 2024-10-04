@@ -11,6 +11,8 @@ import { SignupFormDemo } from "./components/SignupDemoForm";
 import { useAuth } from "./utils/authProvider.jsx"; // Import the useAuth hook
 import JokeGenerator from "./components/Pages/JokeGenerator.jsx";
 import MoodCalendarPage from "./components/Pages/MoodCalendarPage.jsx";
+import Dashboard from "./components/Pages/Dashboard.jsx";
+import MoodDemo from './components/Pages/MoodDemo.jsx'
 import MoodGraph from "./components/MoodGraph.jsx";
 import MoodGraphPage from "./components/Pages/MoodGraphPage.jsx";
 import SleepGraphPage from "./components/Pages/SleepGraphPage.jsx";
@@ -29,9 +31,6 @@ function App() {
           <Route path="/sleep" element={<SleepTracker />} />
           <Route path="/joke" element={<JokeGenerator />} />
           <Route path="/calendar" element={<MoodCalendarPage />} />
-          <Route path="/mgraph" element={<MoodGraphPage />} />
-          <Route path="/sgraph" element={<SleepGraphPage />} />
-          <Route path="/contact" element={<ContactUsPage />} />
         </Routes>
         
       </div>

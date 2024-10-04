@@ -2,12 +2,12 @@ import Post from '../models/PostModel.js';
 import User from '../models/UserModel.js';
 
 export const createPost = async (req, res) => {
-  const { title, description, tags } = req.body;
+  const { title, content, tags } = req.body;
 
   try {
     const newPost = new Post({
       title,
-      description,
+      content,
       tags,
       user: req.user.id, 
     });
@@ -56,7 +56,7 @@ export const updatePost = async (req, res) => {
     }
 
     post.title = req.body.title || post.title;
-    post.description = req.body.description || post.description;
+    post.content = req.body.content || post.content;
     post.tags = req.body.tags || post.tags;
 
     const updatedPost = await post.save();

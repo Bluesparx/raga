@@ -30,8 +30,8 @@ export const createMood = async (req, res) => {
 
 export const getUserMoods = async (req, res) => {
   try {
-    const moods = await Mood.find({ user: req.user.id });
-    res.status(200).json(moods);
+    const moods = await Mood.find({ user: req.user._id }).populate('user', 'username').exec();
+    res.json(moods);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -40,8 +40,7 @@ export const getUserMoods = async (req, res) => {
 export const getMoodById = async (req, res) => {
   try {
     const mood = await Mood.findById(req.params.id);
-
-    if (!mood || mood.user.toString() !== req.user.id) {
+    if (!mood ) {
       return res.status(404).json({ message: "Mood not found" });
     }
 
@@ -55,7 +54,7 @@ export const updateMood = async (req, res) => {
   try {
     const mood = await Mood.findById(req.params.id);
 
-    if (!mood || mood.user.toString() !== req.user.id) {
+    if (!mood ) {
       return res.status(404).json({ message: "Mood not found" });
     }
 
@@ -76,15 +75,14 @@ export const updateMood = async (req, res) => {
 
 export const deleteMood = async (req, res) => {
   try {
+    const user = await User.findById(req.user._id);
     const mood = await Mood.findById(req.params.id);
 
-    if (!mood || mood.user.toString() !== req.user.id) {
+    if (!mood ) {
       return res.status(404).json({ message: "Mood not found" });
     }
 
     await mood.remove();
-    
-    const user = await User.findById(req.user.id);
     user.moods = user.moods.filter(m => m.toString() !== req.params.id);
     await user.save();
 

@@ -1,30 +1,34 @@
+import axios from 'axios';
+
 const host = import.meta.env.REACT_APP_API_HOST || "http://localhost:5000";
 const API_BASE_URL = `${host}/api/v1`;
 
 // API request function
-const apiRequest = async (url, method, body = null) => {
+const apiRequest = async (url, method, data = null) => {
   const token = localStorage.getItem('token');
 
-  const options = {
+  if (!token) {
+    throw new Error('Authentication token not found. Please login.');
+  }
+
+  const config = {
     method,
+    url,
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}` 
+      'Authorization': `Bearer ${token}`,
     },
-    credentials: 'include', 
-    body: body ? JSON.stringify(body) : null
+    data: data ? data : null,
+    withCredentials: true,
   };
 
   try {
-    const response = await fetch(url, options);
-    if (!response.ok) {
-      const errorData = await response.json(); 
-      throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.message || "Unknown error"}`);
-    }
-    return await response.json();
+    const response = await axios(config);
+    return response.data; 
   } catch (error) {
-    console.error('API Request Error:', error);
-    throw error; 
+    const errorMessage = error.response?.data?.message || error.message || "Unknown error";
+    console.error('API Request Error:', errorMessage);
+    throw new Error(errorMessage);
   }
 };
 
@@ -38,9 +42,9 @@ export const getSleepByIdAPI = (id) => apiRequest(`${API_BASE_URL}/sleep/${id}`,
 export const updateSleepEntryAPI = (id, data) => apiRequest(`${API_BASE_URL}/sleep/${id}`, 'PUT', data);
 export const deleteSleepEntryAPI = (id) => apiRequest(`${API_BASE_URL}/sleep/${id}`, 'DELETE');
 
-export const addMoodEntryAPI = (data) => apiRequest(`${API_BASE_URL}/mood`, 'POST', data); 
-export const getUserMoodAPI = () => apiRequest(`${API_BASE_URL}/mood/user`, 'GET'); 
-export const getMoodByIdAPI = (id) => apiRequest(`${API_BASE_URL}/mood/${id}`, 'GET'); 
+export const addMoodEntryAPI = (data) => apiRequest(`${API_BASE_URL}/mood`, 'POST', data);
+export const getUserMoodAPI = () => apiRequest(`${API_BASE_URL}/mood`, 'GET');
+export const getMoodByIdAPI = (id) => apiRequest(`${API_BASE_URL}/mood/${id}`, 'GET');
 export const updateMoodEntryAPI = (id, data) => apiRequest(`${API_BASE_URL}/mood/${id}`, 'PUT', data);
 export const deleteMoodEntryAPI = (id) => apiRequest(`${API_BASE_URL}/mood/${id}`, 'DELETE');
 
