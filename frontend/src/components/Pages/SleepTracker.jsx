@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DiscreteSliderMarks from '../DiscreteSliderMarks'; // Assume this is a slider component you already have
 import { Navbar2 } from '../Navbar2';
 import { Vortex } from '../ui/vortex';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 const SleepTracker = () => {
     const [sleep, setSleep] = useState({
@@ -11,6 +12,7 @@ const SleepTracker = () => {
     });
 
     const [sleepLogs, setSleepLogs] = useState([]);
+    const [suggestion, setSuggestion] = useState(''); // State to hold the suggestion message
 
     // Load sleep logs from local storage on component mount
     useEffect(() => {
@@ -25,6 +27,16 @@ const SleepTracker = () => {
         }));
     };
 
+    const getSleepSuggestion = (duration) => {
+        if (duration < 6) {
+            return 'It looks like you had a bit less sleep than usual. Consider aiming for 6-8 hours of rest for a more refreshed day!';
+        } else if (duration >= 6 && duration <= 8) {
+            return 'Nice! You are getting an optimal amount of rest with 6-8 hours of sleep. Keep it up!';
+        } else {
+            return 'You had a bit more sleep today. As long as you feel well-rested, that’s great! Try to balance it with 6-8 hours if possible.';
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const { duration, quality, date } = sleep;
@@ -37,15 +49,37 @@ const SleepTracker = () => {
         const newEntry = { duration, quality, date };
         const updatedLogs = [...sleepLogs, newEntry];
 
-        setSleepLogs(updatedLogs);
-        localStorage.setItem('sleepLogs', JSON.stringify(updatedLogs));
+        // Attempt to save the log
+        try {
+            localStorage.setItem('sleepLogs', JSON.stringify(updatedLogs));
 
-        // Reset form
-        setSleep({
-            duration: 6,
-            quality: 50,
-            date: ''
-        });
+            // Set sleep suggestion based on the logged duration
+            const sleepSuggestion = getSleepSuggestion(duration);
+            setSuggestion(sleepSuggestion);
+
+            // Show success message
+            Swal.fire({
+                title: 'Success!',
+                text: 'Your sleep log has been recorded for this day.',
+                icon: 'success',
+                confirmButtonText: 'OK',
+            });
+
+            // Reset form
+            setSleep({
+                duration: 6,
+                quality: 50,
+                date: ''
+            });
+        } catch (error) {
+            // Show error message if logging fails
+            Swal.fire({
+                title: 'Error!',
+                text: 'Failed to log your sleep. Please try again.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+        }
     };
 
     return (
@@ -117,6 +151,14 @@ const SleepTracker = () => {
                                     Log Sleep
                                 </button>
                             </form>
+
+                            {/* Display the sleep suggestion */}
+                            {suggestion && (
+                                <div style={{ marginTop: '20px', textAlign: 'center', color: '#f5f5f5' }}>
+                                    <h3>Sleep Suggestion:</h3>
+                                    <p>{suggestion}</p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </Vortex>
