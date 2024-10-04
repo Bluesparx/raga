@@ -89,7 +89,7 @@ function Navbar({ className }) {
             <HoveredLink href="/sleep">Sleep Tracker</HoveredLink>
             <HoveredLink href="/mood">Mood Tracker</HoveredLink>
             <HoveredLink href="/joke">Joke Generator</HoveredLink>
-            <HoveredLink href="/branding">Branding</HoveredLink>
+            <HoveredLink href="/calendar">Calendar</HoveredLink>
           </div>
         </MenuItem>
 
