@@ -28,9 +28,9 @@ export function SignupFormDemo() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    const { email, password, confirmPassword } = formData;
+    const { name, email, password, confirmPassword } = formData;
 
-    if (!email || !password || !confirmPassword) {
+    if (!name || !email || !password || !confirmPassword) {
       toast.error("Please fill all fields");
       return;
     }
@@ -41,7 +41,7 @@ export function SignupFormDemo() {
     }
 
     try {
-      const response = await registerAPI({ email, password });
+      const response = await registerAPI({ name, email, password });
       console.log('Sign up successful', response);
       localStorage.setItem('token', response.token); 
       login(); 
@@ -64,6 +64,18 @@ export function SignupFormDemo() {
                 Create an account
               </h1>
               <form className="space-y-4 md:space-y-6 text-black" onSubmit={handleSubmit}>
+              <div>
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-200 dark:text-white">Full Name</label>
+                  <input
+                    type="name"
+                    name="name"
+                    id="name"
+                    className="bg-gray-50 border border-gray-300 text-gray-200 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-black"
+                    placeholder="John Doe"
+                    required
+                    onChange={handleChange}
+                  />
+                </div>
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-200 dark:text-white">Your email</label>
                   <input
