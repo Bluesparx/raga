@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input"; 
 import { useNavigate } from "react-router-dom";
 import { registerAPI } from "../utils/apiRequest"; // Assuming you have a signup API function
 import { useAuth } from "../utils/authProvider";
 import { Vortex } from './ui/vortex';
 import { NavbarDemo } from "./NavbarDemo";
+import { toast } from 'react-hot-toast'; // Import the toast function
 
 export function SignupFormDemo() {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -44,30 +44,32 @@ export function SignupFormDemo() {
       console.log('Sign up successful', response);
       localStorage.setItem('token', response.token); 
       login(response.token); 
+      toast.success("Sign up successful! Redirecting...");
       navigate('/');
     } catch (error) {
       console.error('Could not sign up:', error);
+      toast.error('Could not sign up. Please try again.');
     }
   };
 
   return (
     <>
       <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
-        {/* <NavbarDemo className='mb-4' /> */}
+        <NavbarDemo className='mb-4' />
         <Vortex className='mt-20 pt-10 z-10'>
-          <div className="w-full bg-black mx-auto rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div className="shadow shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8">
+        <div className="w-full mx-auto rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="shadow shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8 bg-clip-padding backdrop-filter backdrop-blur-xl  bg-white/10 bg-opacity-30 rounded-lg text-white p-10 max-w-lg mx-auto ">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-100 md:text-2xl dark:text-white">
                 Create an account
               </h1>
               <form className="space-y-4 md:space-y-6 text-black" onSubmit={handleSubmit}>
-              <div>
-                  <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-200 dark:text-white">Full Name</label>
+                <div>
+                  <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-200 dark:text-white">Full Name</label>
                   <input
-                    type="name"
+                    type="text"
                     name="name"
                     id="name"
-                    className="bg-gray-50 border border-gray-300 text-gray-200 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-black"
+                    className="bg-white/30 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-black"
                     placeholder="John Doe"
                     required
                     onChange={handleChange}
@@ -79,7 +81,7 @@ export function SignupFormDemo() {
                     type="email"
                     name="email"
                     id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-200 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-black"
+                    className="bg-white/30 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-black"
                     placeholder="name@company.com"
                     required
                     onChange={handleChange}
@@ -92,7 +94,7 @@ export function SignupFormDemo() {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-black-200 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-white/30 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                     onChange={handleChange}
                   />
@@ -104,7 +106,7 @@ export function SignupFormDemo() {
                     name="confirmPassword"
                     id="confirmPassword"
                     placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-black-200 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-white/30  text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                     onChange={handleChange}
                   />
@@ -118,11 +120,11 @@ export function SignupFormDemo() {
                       <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
                     </div>
                   </div>
-                  <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                  <a href="#" className="text-sm font-medium text-violet-400 hover:underline dark:text-violet-300">Forgot password?</a>
                 </div>
-                <button type="submit" className="w-full text-white bg-violet-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign up</button>
+                <button type="submit" className="w-full text-white bg-violet-400 hover:bg-violet-500 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-violet-600 dark:hover:bg-violet-700 dark:focus:ring-violet-800">Sign up</button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Already have an account? <a href="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in</a>
+                  Already have an account? <a href="/login" className="font-medium text-violet-400 hover:underline dark:text-violet-300">Login</a>
                 </p>
               </form>
             </div>

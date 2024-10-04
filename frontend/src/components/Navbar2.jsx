@@ -2,18 +2,24 @@ import React, { useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/authProvider";
 
+
 // MenuItem component
 export const MenuItem = ({ setActive, active, item, children }) => {
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative">
+    <div
+      onMouseEnter={() => setActive(item)}
+      className="relative group"
+    >
       <p
-        className="cursor-pointer  hover:opacity-[0.9] text-white"
+        className={`cursor-pointer hover:opacity-90 text-white transition duration-200 ${
+          active === item ? "opacity-90" : ""
+        }`}
       >
         {item}
       </p>
-      {active !== null && active === item && (
-        <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
-          <div className=" bg-black backdrop-blur-sm rounded-2xl overflow-hidden border  border-white/[0.2] shadow-xl">
+      {active === item && (
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-4">
+          <div className="bg-black backdrop-blur-md rounded-xl overflow-hidden border border-white/20 shadow-lg">
             <div className="w-max h-full p-4">{children}</div>
           </div>
         </div>
@@ -27,31 +33,27 @@ export const Menu = ({ setActive, children }) => {
   return (
     <nav
       onMouseLeave={() => setActive(null)}
-      className="relative rounded-full border border-transparent bg-black border-white/[0.2] shadow-input flex justify-center space-x-4 px-8 py-6"
+      className="relative rounded-full bg-black/90 border border-white/20 shadow-lg flex justify-center space-x-6 px-10 py-4"
     >
       {children}
     </nav>
   );
 };
 
-// ProductItem component
+// ProductItem component (for dropdown content if needed)
 export const ProductItem = ({ title, description, href, src }) => {
   return (
-    <a href={href} className="flex space-x-2">
+    <a href={href} className="flex space-x-4">
       <img
         src={src}
         width={140}
         height={70}
         alt={title}
-        className="flex-shrink-0 rounded-md shadow-2xl"
+        className="flex-shrink-0 rounded-lg shadow-lg"
       />
       <div>
-        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
-          {title}
-        </h4>
-        <p className="text-sm max-w-[10rem] text-neutral-300">
-          {description}
-        </p>
+        <h4 className="text-lg font-semibold text-white">{title}</h4>
+        <p className="text-sm text-neutral-300">{description}</p>
       </div>
     </a>
   );
@@ -59,16 +61,33 @@ export const ProductItem = ({ title, description, href, src }) => {
 
 // HoveredLink component
 export const HoveredLink = ({ children, href, onClick }) => {
+  const handleClick = (e) => {
+    if (onClick) {
+      e.preventDefault();  
+      onClick();
+    }
+  };
+
   return (
     <a
-      href={href || '#'}
-      onClick={onClick ? (e) => { e.preventDefault(); onClick(); } : null}
-      className="text-neutral-200 hover:text-black"
+      href={href || "#"}
+      onClick={handleClick}
+      className="text-neutral-200 hover:text-blue-500 transition duration-150"
     >
       {children}
     </a>
   );
 };
+
+// NavbarDemo component
+export function NavbarDemo() {
+  return (
+    <div className="relative w-full flex items-center justify-center py-4">
+      <Navbar className="top-0" />
+    </div>
+  );
+}
+
 
 
 // NavbarDemo component
@@ -89,15 +108,11 @@ function Navbar({ className }) {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      const response = await logout();
-      console.log('Logout successful', response);
-      navigate('/');
-    } catch (error) {
-      console.error('Could not log in:', error);
-    }
+  const handleLogout = () => {
+    logout();
+    navigate("/login"); 
   }
+  
 
   return (
     <div className={`fixed top-10 inset-x-0 max-w-2xl mx-auto z-50 ${className}`}>

@@ -68,8 +68,9 @@ const ContactUsForm = () => {
   };
 
   return (
-    <div style={{backgroundColor:'black', width:'35rem'}}
-      className={`bg-black-700 text-white p-10 max-w-lg mx-auto rounded-lg shadow-lg border border-gray-500 transform transition-opacity duration-800 ease-in-out ${
+           
+    <div style={{width:'35rem'}}
+      className={`shadow shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8 bg-clip-padding backdrop-filter backdrop-blur-xl  bg-white/10 bg-opacity-30 rounded-lg text-white p-10 max-w-lg mx-auto ${
         formLoaded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95"
       }`}
     >
@@ -80,7 +81,7 @@ const ContactUsForm = () => {
             Name
           </label>
           <input
-            className="w-full p-3 rounded-md bg-gray-800 border border-gray-600 text-white focus:ring-1 focus:ring-purple-300 focus:outline-none"
+            className="w-full p-3 rounded-md bg-white/30 border border-gray-600 text-white focus:ring-1 focus:ring-purple-300 focus:outline-none"
             type="text"
             id="name"
             name="name"
@@ -96,7 +97,7 @@ const ContactUsForm = () => {
             Email
           </label>
           <input
-            className="w-full p-3 rounded-md bg-gray-800 border border-gray-600 text-white focus:ring-1 focus:ring-purple-300 focus:outline-none"
+            className="w-full p-3 rounded-md bg-white/30 border border-gray-600 text-white focus:ring-1 focus:ring-purple-300 focus:outline-none"
             type="email"
             id="email"
             name="email"
@@ -112,7 +113,7 @@ const ContactUsForm = () => {
             Message
           </label>
           <textarea
-            className="w-full p-3 rounded-md bg-gray-800 border border-gray-600 text-white focus:ring-1 focus:ring-purple-300 focus:outline-none min-h-[100px]"
+            className="w-full p-3 rounded-md bg-white/30 border border-gray-600 text-white focus:ring-1 focus:ring-purple-300 focus:outline-none min-h-[100px]"
             id="message"
             name="message"
             value={formData.message}
@@ -124,7 +125,7 @@ const ContactUsForm = () => {
 
         <button
           type="submit"
-          className="mt-4 px-6 py-3 bg-purple-500 text-white rounded-full hover:bg-purple-600 text-base w-full font-semibold transform hover:scale-105 transition-transform"
+          className="mt-4 px-6 py-3 bg-purple-500 text-white rounded-full hover:bg-purple-600 text-base w-full font-semibold"
         >
           Send Message
         </button>

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input"; 
 import { useNavigate } from "react-router-dom";
 import { loginAPI } from "../utils/apiRequest";
 import { useAuth } from "../utils/authProvider";
@@ -48,13 +46,13 @@ export function LoginForm() {
   return (
     <>
     <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
-      {/* <NavbarDemo className='mb-4'/> */}
+      <NavbarDemo className='mb-4'/>
       <Vortex className='mt-20 pt-10 z-10'>
       
-      <div className="w-full bg-black mx-auto rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="shadow shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8">
+      <div className="w-full mx-auto rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="shadow shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8 bg-clip-padding backdrop-filter backdrop-blur-xl  bg-white/10 bg-opacity-30 rounded-lg text-white p-10 max-w-lg mx-auto ">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-100 md:text-2xl dark:text-white">
-                  Sign in to your account
+                  Login to your account
               </h1>
               <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                   <div>
@@ -63,7 +61,7 @@ export function LoginForm() {
                           type="email"
                           name="email"
                           id="email"
-                          className="bg-gray-50 border border-gray-300 text-black-200 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          className="bg-white/30 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           placeholder="name@company.com"
                           required
                           onChange={handleChange}
@@ -76,7 +74,7 @@ export function LoginForm() {
                           name="password"
                           id="password"
                           placeholder="••••••••"
-                          className="bg-gray-50 border border-black-300 text-black-200 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          className="bg-white/30 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           required
                           onChange={handleChange}
                       />
@@ -87,14 +85,14 @@ export function LoginForm() {
                             <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" />
                           </div>
                           <div className="ml-3 text-sm">
-                            <label htmlFor="remember" className="text-black-500 dark:text-gray-300">Remember me</label>
+                            <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
                           </div>
                       </div>
-                      <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                      <a href="#" className="text-sm font-medium text-violet-400 hover:underline dark:text-violet-300">Forgot password?</a>
                   </div>
-                  <button type="submit" className="w-full text-white bg-violet-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
-                  <p className="text-sm font-light text-black-500 dark:text-gray-400">
-                      Don’t have an account yet? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                  <button type="submit" className="w-full text-white bg-violet-400 hover:bg-violet-500 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-violet-600 dark:hover:bg-violet-700 dark:focus:ring-violet-800">Login</button>
+                  <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                      Don’t have an account yet? <a href="/register" className="font-medium text-violet-400 hover:underline dark:text-violet-300">Sign up</a>
                   </p>
               </form>
           </div>
