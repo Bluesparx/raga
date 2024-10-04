@@ -31,6 +31,9 @@ function App() {
           <Route path="/sleep" element={<SleepTracker />} />
           <Route path="/joke" element={<JokeGenerator />} />
           <Route path="/calendar" element={<MoodCalendarPage />} />
+<Route path="/mgraph" element={<MoodGraphPage />} />
+          <Route path="/sgraph" element={<SleepGraphPage />} />
+          <Route path="/contact" element={<ContactUsPage />} />
         </Routes>
         
       </div>
