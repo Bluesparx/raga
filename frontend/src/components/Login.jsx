@@ -47,69 +47,60 @@ export function LoginForm() {
 
   return (
     <>
-    
-      <NavbarDemo/>
-      <Vortex className=' z-10'>
-      <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl z-20 p-4 md:p-8 shadow-input bg-black relative">
-        <h2 className="font-bold text-xl text-neutral-200">
-          Welcome to Aceternity
-        </h2>
-        <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-          Login to Aceternity if you can because we don&apos;t have a login flow yet
-        </p>
-        <form className="my-8" onSubmit={handleSubmit}>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="email">Email Address</Label>
-            <Input
-              name="email"
-              id="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="projectmayhem@fc.com"
-              type="email"
-              required
-            />
-          </LabelInputContainer>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              name="password"
-              id="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="••••••••"
-              type="password"
-              required
-            />
-          </LabelInputContainer>
-
-          <button
-            className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset]"
-            type="submit"
-          >
-            Login &rarr;
-            <BottomGradient />
-          </button>
-        </form>
+    <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
+      <NavbarDemo className='mb-4'/>
+      <Vortex className='mt-20 pt-10 z-10'>
+      
+      <div className="w-full bg-black mx-auto rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="shadow shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-100 md:text-2xl dark:text-white">
+                  Sign in to your account
+              </h1>
+              <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                  <div>
+                      <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-200 dark:text-white">Your email</label>
+                      <input
+                          type="email"
+                          name="email"
+                          id="email"
+                          className="bg-gray-50 border border-gray-300 text-gray-200 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          placeholder="name@company.com"
+                          required
+                          onChange={handleChange}
+                      />
+                  </div>
+                  <div>
+                      <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-200 dark:text-white">Password</label>
+                      <input
+                          type="password"
+                          name="password"
+                          id="password"
+                          placeholder="••••••••"
+                          className="bg-gray-50 border border-gray-300 text-gray-200 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          required
+                          onChange={handleChange}
+                      />
+                  </div>
+                  <div className="flex items-center justify-between">
+                      <div className="flex items-start">
+                          <div className="flex items-center h-5">
+                            <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" />
+                          </div>
+                          <div className="ml-3 text-sm">
+                            <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
+                          </div>
+                      </div>
+                      <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                  </div>
+                  <button type="submit" className="w-full text-white bg-violet-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                  <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                      Don’t have an account yet? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                  </p>
+              </form>
+          </div>
       </div>
       </Vortex>
+      </div>
     </>
   );
 }
-
-const BottomGradient = () => {
-  return (
-    <>
-      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-    </>
-  );
-};
-
-const LabelInputContainer = ({ children, className }) => {
-  return (
-    <div className={`flex flex-col space-y-2 w-full ${className}`}>
-      {children}
-    </div>
-  );
-};
