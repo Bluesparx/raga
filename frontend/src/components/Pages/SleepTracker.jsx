@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import DiscreteSliderMarks from '../DiscreteSliderMarks';
+import React, { useState, useEffect } from 'react';
+import DiscreteSliderMarks from '../DiscreteSliderMarks'; // Assume this is a slider component you already have
 import { Navbar2 } from '../Navbar2';
 import { Vortex } from '../ui/vortex';
-import { addSleepEntryAPI } from '../../utils/apiRequest';
 
 const SleepTracker = () => {
     const [sleep, setSleep] = useState({
@@ -11,6 +10,14 @@ const SleepTracker = () => {
         date: ''
     });
 
+    const [sleepLogs, setSleepLogs] = useState([]);
+
+    // Load sleep logs from local storage on component mount
+    useEffect(() => {
+        const savedSleepLogs = JSON.parse(localStorage.getItem('sleepLogs')) || [];
+        setSleepLogs(savedSleepLogs);
+    }, []);
+
     const handleChange = (field, value) => {
         setSleep((prev) => ({
             ...prev,
@@ -18,27 +25,27 @@ const SleepTracker = () => {
         }));
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(sleep)
         const { duration, quality, date } = sleep;
 
         if (!duration || !quality || !date) {
-            console.error("Please fill all fields");
+            console.error('Please fill all fields');
             return;
         }
 
-        try {
-            const response = await addSleepEntryAPI({ duration, quality, date });
-            console.log('Sleep entry successful', response);
-            setSleep({
-                duration: 6,
-                quality: 50,
-                date: ''
-            });
-        } catch (error) {
-            console.error('Could not log sleep:', error);
-        }
+        const newEntry = { duration, quality, date };
+        const updatedLogs = [...sleepLogs, newEntry];
+
+        setSleepLogs(updatedLogs);
+        localStorage.setItem('sleepLogs', JSON.stringify(updatedLogs));
+
+        // Reset form
+        setSleep({
+            duration: 6,
+            quality: 50,
+            date: ''
+        });
     };
 
     return (
@@ -67,8 +74,8 @@ const SleepTracker = () => {
                                         <DiscreteSliderMarks
                                             value={sleep.duration}
                                             min={0}
-                                            max={24} 
-                                            step={1} 
+                                            max={24}
+                                            step={1}
                                             onChange={(value) => handleChange('duration', value)}
                                         />
                                     </div>
@@ -98,7 +105,7 @@ const SleepTracker = () => {
                                     style={{
                                         marginTop: '20px',
                                         padding: '12px',
-                                        backgroundColor: '#4f46e5',
+                                        backgroundColor: '#6B46C1',
                                         color: 'white',
                                         borderRadius: '5px',
                                         cursor: 'pointer',

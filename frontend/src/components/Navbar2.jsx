@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 // MenuItem component
 export const MenuItem = ({ setActive, active, item, children }) => {
@@ -93,43 +94,23 @@ function Navbar({ className }) {
           </div>
         </MenuItem>
 
-        {/* Products Menu Item */}
-        <MenuItem setActive={setActive} active={active} item="Products">
-          <div className="text-sm grid grid-cols-2 gap-10 p-4">
-            <ProductItem
-              title=""
-              href="https://algochurn.com"
-              src="https://assets.aceternity.com/demos/algochurn.webp"
-              description="Prepare for tech interviews like never before."
-            />
-            <ProductItem
-              title="Tailwind Master Kit"
-              href="https://tailwindmasterkit.com"
-              src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
-              description="Production ready Tailwind CSS components for your next project."
-            />
-            <ProductItem
-              title="Moonbeam"
-              href="https://gomoonbeam.com"
-              src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
-              description="Never write from scratch again. Go from idea to blog in minutes."
-            />
-            <ProductItem
-              title="Rogue"
-              href="https://userogue.com"
-              src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
-              description="Respond to government RFPs, RFIs, and RFQs 10x faster using AI."
-            />
+      
+        {/* Services Menu Item */}
+        <MenuItem setActive={setActive} active={active} item="Mappings">
+          <div className="flex flex-col space-y-4 text-sm">
+            <HoveredLink href="/sgraph">Sleep Map</HoveredLink>
+            <HoveredLink href="/mgraph">Mood Map</HoveredLink>
+           
           </div>
         </MenuItem>
 
         {/* Pricing Menu Item */}
-        <MenuItem setActive={setActive} active={active} item="Pricing">
+        <MenuItem setActive={setActive} active={active} item="About">
           <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/hobby">Hobby</HoveredLink>
-            <HoveredLink href="/individual">Individual</HoveredLink>
-            <HoveredLink href="/team">Team</HoveredLink>
-            <HoveredLink href="/enterprise">Enterprise</HoveredLink>
+            <HoveredLink href="/contact">Contact Us</HoveredLink>
+            <HoveredLink href="/about">About us</HoveredLink>
+            <HoveredLink href="/home">Logout</HoveredLink>
+            
           </div>
         </MenuItem>
       </Menu>
