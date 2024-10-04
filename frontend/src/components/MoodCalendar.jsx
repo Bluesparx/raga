@@ -1,41 +1,60 @@
+// MoodCalendar.js
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { Vortex } from './ui/vortex';
-import { Navbar2 } from './Navbar2';
+import { getUserMoodAPI } from '../utils/apiRequest';
+import Modal from './ModalMood'; 
 
 const MoodCalendar = () => {
     const [value, setValue] = useState(new Date());
-    const [moods, setMoods] = useState({}); // Store moods with date as the key
+    const [moods, setMoods] = useState({});
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedMood, setSelectedMood] = useState({});
+
+    const fetchMoods = async () => {
+        try {
+            const userMoods = await getUserMoodAPI();
+            const formattedMoods = userMoods.reduce((acc, mood) => {
+                const formattedDate = new Date(mood.date).toLocaleDateString();
+                acc[formattedDate] = mood; 
+                return acc;
+            }, {});
+            setMoods(formattedMoods);
+        } catch (error) {
+            console.error("Error fetching user moods:", error);
+        }
+    };
 
     useEffect(() => {
-        // Fetch moods from the database
-        const fetchMoods = async () => {
-            try {
-              const response = await getUserMoodAPI();
-              setMoods(response);
-            } catch (error) {
-              console.error("Error fetching moods:", error);
-            }
-          };
-
         fetchMoods();
     }, []);
 
+    // Handle date selection and modal opening
     const handleDateChange = (newDate) => {
         setValue(newDate);
+        const mood = getMoodForDate(newDate);
+        if (mood.description !== 'No mood recorded') {
+            setSelectedMood(mood);
+            setIsModalOpen(true);
+        } else {
+            setSelectedMood({}); 
+            setIsModalOpen(false);
+        }
     };
 
-    // Get the mood for the selected date
     const getMoodForDate = (date) => {
         const formattedDate = date.toLocaleDateString();
-        return moods[formattedDate] || 'No mood recorded';
+        return moods[formattedDate] || { description: 'No mood recorded', tags: [], date: formattedDate };
     };
 
-    // Check if the date is in the future
     const isFutureDate = (date) => {
         const today = new Date();
+        today.setHours(0, 0, 0, 0); 
         return date > today;
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
     };
 
     return (
@@ -45,20 +64,31 @@ const MoodCalendar = () => {
                 onChange={handleDateChange}
                 value={value}
                 tileContent={({ date, view }) => {
-                   
                     if (view === 'month' && !isFutureDate(date)) {
                         const mood = getMoodForDate(date);
-                        return <div>{mood}</div>;
+                        return <div>{mood.happiness}</div>; 
                     }
                     return null; 
                 }}
-               
                 className="bg-gray-800 text-white" 
             />
             <div className="mt-4">
                 <h2 className="text-xl">Selected Date: {value.toLocaleDateString()}</h2>
-                <p>Mood: {getMoodForDate(value)}</p>
+                <p>Mood: {getMoodForDate(value).description}</p>
             </div>
+
+            <Modal 
+                isOpen={isModalOpen} 
+                onClose={handleCloseModal}
+                selectedDate={value} 
+                happiness={selectedMood.happiness}
+                description={selectedMood.description}
+                calmness={selectedMood.calmness}
+                stress={selectedMood.stress}
+                focus={selectedMood.focus}
+                tags={selectedMood.tags}
+                date={selectedMood.date}
+            />
         </div>
     );
 };

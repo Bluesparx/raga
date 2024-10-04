@@ -14,6 +14,7 @@ import JokeGenerator from "./components/Pages/JokeGenerator.jsx";
 import MoodCalendar from "./components/MoodCalendar.jsx";
 import MoodCalendarPage from "./components/Pages/MoodCalendarPage.jsx";
 import Dashboard from "./components/Pages/Dashboard.jsx";
+import MoodDemo from './components/Pages/MoodDemo.jsx'
 
 function App() {
   return (

@@ -13,6 +13,6 @@ router.post("/", protect, createMood);
 router.get("/:id", protect, getMoodById);
 router.put("/:id", protect, updateMood);  
 router.delete("/:id", protect, deleteMood);  
-router.get("/user", protect, getUserMoods); 
+router.get("/", protect, getUserMoods); 
 
 export default router;

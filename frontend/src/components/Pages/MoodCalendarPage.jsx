@@ -5,47 +5,6 @@ import { Vortex } from '../ui/vortex';
 import { Navbar2 } from '../Navbar2';
 import MoodCalendar from '../MoodCalendar';
 const MoodCalendarPage = () => {
-    const [value, setValue] = useState(new Date());
-    const [moods, setMoods] = useState({}); // Store moods with date as the key
-
-    useEffect(() => {
-        // Fetch moods from the database
-        const fetchMoods = async () => {
-            try {
-                const response = await fetch('/api/moods'); // Adjust the API endpoint as needed
-                const data = await response.json();
-                const moodMap = {};
-
-                // Transform data into a key-value format
-                data.forEach(moodEntry => {
-                    const date = new Date(moodEntry.date).toLocaleDateString(); // Format date
-                    moodMap[date] = moodEntry.mood; // Assuming moodEntry has 'date' and 'mood'
-                });
-
-                setMoods(moodMap);
-            } catch (error) {
-                console.error('Error fetching moods:', error);
-            }
-        };
-
-        fetchMoods();
-    }, []);
-
-    const handleDateChange = (newDate) => {
-        setValue(newDate);
-    };
-
-    // Get the mood for the selected date
-    const getMoodForDate = (date) => {
-        const formattedDate = date.toLocaleDateString();
-        return moods[formattedDate] || 'No mood recorded';
-    };
-
-    // Check if the date is in the future
-    const isFutureDate = (date) => {
-        const today = new Date();
-        return date > today;
-    };
 
     return (
         <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
