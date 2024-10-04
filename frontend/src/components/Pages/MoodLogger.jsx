@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import DiscreteSliderMarks from '../DiscreteSliderMarks';
 import { Navbar2 } from '../Navbar2';
 import { Vortex } from '../ui/vortex';
+import Swal from 'sweetalert2';
 import { addMoodEntryAPI } from '../../utils/apiRequest';
 
 const MoodLogger = () => {
-  // Load mood from local storage or use default values
   const [mood, setMood] = useState(() => {
     const savedMood = localStorage.getItem('mood');
     return savedMood
@@ -21,10 +21,10 @@ const MoodLogger = () => {
         };
   });
 
-  const [quote, setQuote] = useState(''); // State to hold the mood quote
+  const [quote, setQuote] = useState('');
+  const [suggestion, setSuggestion] = useState('');
 
   useEffect(() => {
-    // Save the mood to local storage whenever it changes
     localStorage.setItem('mood', JSON.stringify(mood));
   }, [mood]);
 
@@ -36,7 +36,6 @@ const MoodLogger = () => {
   };
 
   const getHighestMood = () => {
-    // Get the mood with the highest score
     const moodScores = {
       stress: mood.stress,
       happiness: mood.happiness,
@@ -62,31 +61,57 @@ const MoodLogger = () => {
     return quotes[moodType] || 'Stay positive!';
   };
 
+  const getMoodSuggestion = (moodType) => {
+    const suggestions = {
+      stress: 'Try some meditation or deep breathing exercises to relax.',
+      happiness: 'Keep spreading positivity and maybe share it with others!',
+      energy: 'Channel that energy into a productive task or exercise!',
+      focus: 'Use this focus to knock out some tasks or work on a project.',
+      calmness: 'Maintain this calmness by engaging in a peaceful activity like reading.',
+    };
+    return suggestions[moodType] || 'Take care of yourself!';
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { calmness, date, description, energy, focus, happiness, stress } = mood;
     if (!calmness || !date || !description || !energy || !focus || !happiness || !stress) {
-      console.error('Please fill all fields');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill all fields!',
+      });
       return;
     }
 
     console.log('Submitted Mood:', mood);
 
-    // Get the highest mood and the corresponding quote
     const highestMood = getHighestMood();
     const moodQuote = getMoodQuote(highestMood);
+    const moodSuggestion = getMoodSuggestion(highestMood);
     setQuote(moodQuote);
-
-   
+    setSuggestion(moodSuggestion);
 
     try {
       const response = await addMoodEntryAPI({ calmness, date, description, energy, focus, happiness, stress });
       console.log('Mood entry successful', response);
-      // Clear the local storage after successful submission
-     
+
+      // Show success alert
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Your mood entry has been logged successfully.',
+      });
     } catch (error) {
       console.error('Could not log mood:', error);
+      
+      // Show error alert
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'Could not log your mood. Please try again.',
+      });
     }
   };
 
@@ -205,6 +230,13 @@ const MoodLogger = () => {
                 <div style={{ marginTop: '20px', textAlign: 'center', color: '#f5f5f5' }}>
                   <h3>Your Mood Quote:</h3>
                   <p>{quote}</p>
+                </div>
+              )}
+
+              {suggestion && (
+                <div style={{ marginTop: '20px', textAlign: 'center', color: '#f5f5f5' }}>
+                  <h3>Suggestion:</h3>
+                  <p>{suggestion}</p>
                 </div>
               )}
             </div>

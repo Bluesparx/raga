@@ -3,8 +3,14 @@ import DiscreteSliderMarks from '../DiscreteSliderMarks';
 import { Navbar2 } from '../Navbar2';
 import { Vortex } from '../ui/vortex';
 import MoodGraph from '../MoodGraph';
+
 const MoodGraphPage = () => {
-   
+    const [selectedDate, setSelectedDate] = useState('');
+
+    // Handle date input change
+    const handleDateChange = (event) => {
+        setSelectedDate(event.target.value);
+    };
 
     return (
         <>
@@ -22,7 +28,36 @@ const MoodGraphPage = () => {
                             border: '1px solid rgba(255, 255, 255, 0.2)',
                         }}>
                             <h1 style={{ textAlign: 'center', marginBottom: '15px', fontSize: '28px', color: '#f5f5f5' }}>Mood Graph</h1>
-                           <MoodGraph/>
+                            
+                            {/* Date Picker */}
+                            <div style={{ marginBottom: '20px', textAlign: 'center' }}>
+                                <label htmlFor="date" style={{ color: '#f5f5f5', fontSize: '18px' }}>
+                                    Select a date to view the mood graph:
+                                </label>
+                                <input
+                                    type="date"
+                                    id="date"
+                                    value={selectedDate}
+                                    onChange={handleDateChange}
+                                    style={{
+                                        display: 'block',
+                                        margin: '10px auto',
+                                        padding: '10px',
+                                        fontSize: '16px',
+                                        borderRadius: '5px',
+                                        border: '1px solid rgba(255, 255, 255, 0.5)',
+                                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                                        color: '#f5f5f5',
+                                    }}
+                                />
+                            </div>
+
+                            {/* Display Mood Graph */}
+                            {selectedDate ? (
+                                <MoodGraph selectedDate={selectedDate} />
+                            ) : (
+                                <p style={{ textAlign: 'center', color: '#f5f5f5' }}>Please select a date to view the mood graph.</p>
+                            )}
                         </div>
                     </div>
                 </Vortex>

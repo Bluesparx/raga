@@ -4,31 +4,36 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const SleepGraph = () => {
+const SleepGraph = ({ selectedDate }) => {
   const [sleepLogs, setSleepLogs] = useState([]);
 
+  // Fetch sleep logs from localStorage on component mount
   useEffect(() => {
     const savedLogs = JSON.parse(localStorage.getItem('sleepLogs')) || [];
     setSleepLogs(savedLogs);
   }, []);
 
-  if (sleepLogs.length === 0) {
-    return <p>No sleep data available. Please log some sleep entries.</p>;
+  // Filter sleep logs by the selected date
+  const filteredLogs = sleepLogs.filter(log => log.date === selectedDate);
+
+  if (filteredLogs.length === 0) {
+    return <p>No sleep data available for the selected date. Please log some sleep entries.</p>;
   }
 
+  // Prepare the data for the bar chart
   const barData = {
-    labels: sleepLogs.map(log => log.date),
+    labels: filteredLogs.map(log => log.date),
     datasets: [
       {
         label: 'Sleep Duration (hours)',
-        data: sleepLogs.map(log => log.duration),
+        data: filteredLogs.map(log => log.duration),
         backgroundColor: 'rgba(0, 123, 255, 0.6)',
         borderColor: 'rgba(0, 123, 255, 1)',
         borderWidth: 1,
       },
       {
         label: 'Sleep Quality (%)',
-        data: sleepLogs.map(log => log.quality),
+        data: filteredLogs.map(log => log.quality),
         backgroundColor: 'rgba(153, 102, 255, 0.6)',
         borderColor: 'rgba(153, 102, 255, 1)',
         borderWidth: 1,
@@ -55,7 +60,7 @@ const SleepGraph = () => {
       },
       title: {
         display: true,
-        text: 'Sleep Tracker Data',
+        text: `Sleep Tracker Data for ${selectedDate}`,
       },
     },
   };

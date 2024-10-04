@@ -18,6 +18,7 @@ import MoodDemo from './components/Pages/MoodDemo.jsx';
 import MoodGraphPage from "./components/Pages/MoodGraphPage.jsx";
 import SleepGraphPage from "./components/Pages/SleepGraphPage.jsx";
 import ContactUsPage from "./components/Pages/ContactUsPage.jsx";
+import AboutUsPage from "./components/Pages/AboutUsPage.jsx";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/sgraph" element={<SleepGraphPage />} />
           <Route path="/contact" element={<ContactUsPage />} />
           <Route path="/blogs" element={<Dashboard/>}/>
+          <Route path="/about" element={<AboutUsPage/>}/>
         </Routes>
         
       </div>
