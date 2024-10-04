@@ -2,40 +2,23 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
-const marks = [
-  {
-    value: 0,
-    label: '',
-  },
-  {
-    value: 20,
-    label: '25',
-  },
-  {
-    value: 37,
-    label: '50',
-  },
-  {
-    value: 100,
-    label: '100',
-  },
-];
-
 function valuetext(value) {
   return `${value}`;
 }
 
-export default function DiscreteSliderMarks({ value, onChange }) {
+export default function DiscreteSliderMarks({ value, onChange, min = 0, max = 100, step = 10, marks = [] }) {
   return (
     <Box sx={{ width: 300 }}>
       <Slider
         aria-label="Custom marks"
-        value={value} // Use the value from props
+        value={value}
         getAriaValueText={valuetext}
-        step={10}
+        step={step}
+        min={min} 
+        max={max} 
         valueLabelDisplay="auto"
-        marks={marks}
-        onChange={(e, newValue) => onChange(newValue)} // Call the onChange prop with the new value
+        marks={marks} 
+        onChange={(e, newValue) => onChange(newValue)} 
       />
     </Box>
   );

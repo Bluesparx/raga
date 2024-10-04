@@ -16,6 +16,7 @@
     "@mui/styled-engine-sc": "^6.1.1",
     "@radix-ui/react-label": "^2.1.0",
     "@tabler/icons-react": "^3.19.0",
+    "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.9.0",

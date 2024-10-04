@@ -2,13 +2,13 @@ import Sleep from '../models/SleepModel.js';
 import User from '../models/UserModel.js';
 
 export const createSleep = async (req, res) => {
-  const { sleepDuration, sleepQuality, sleepDate } = req.body;
+  const { duration, quality, date } = req.body;
 
   try {
     const newSleep = new Sleep({
-      sleepDuration,
-      sleepQuality,
-      sleepDate,
+      duration, 
+      quality, 
+      date, 
       user: req.user.id 
     });
 
@@ -55,9 +55,9 @@ export const updateSleep = async (req, res) => {
       return res.status(404).json({ message: "Sleep entry not found" });
     }
 
-    sleep.sleepDuration = req.body.sleepDuration || sleep.sleepDuration;
-    sleep.sleepQuality = req.body.sleepQuality || sleep.sleepQuality;
-    sleep.sleepDate = req.body.sleepDate || sleep.sleepDate;
+    sleep.duration = req.body.duration || sleep.duration;
+    sleep.qualityuality = req.body.quality || sleep.quality;
+    sleep.date = req.body.date || sleep.date;
 
     const updatedSleep = await sleep.save();
     res.status(200).json(updatedSleep);

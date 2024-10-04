@@ -5,6 +5,10 @@ const jwt_secret = process.env.JWT_SECRET;
 // console.log(jwt_secret)
 
 export const protect = async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        return res.status(401).json({ message: 'No authorization token provided' });
+    }
   const token =  req.headers.authorization.split(" ")[1];
   if (!token) {
     return res.status(401).json({ message: "Not authorized, no token" });

@@ -89,8 +89,32 @@ export const deletePost = async (req, res) => {
 export const getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find().populate('user', 'username'); 
-    res.status(200).json(posts);
+    const postsWithLikes = posts.map(post => ({
+      ...post._doc,
+      likesCount: post.likes.length, 
+    }));
+    res.status(200).json(postsWithLikes);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const likePosts = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);  
+    const user = await User.findById(req.user.id);
+
+    if(post.likes.includes(user)){
+      post.likes = post.likes.filter(id => id.toString() !== userId)
+      await post.save();
+      return res.status(200).json({ message: "Post unliked", post });
+    } else {
+      post.likes.push(user);
+      await post.save();
+      return res.status(200).json({ message: "Post unliked", post });
+    }
+
+  } catch (error) {
+    res.statud(500).json({ message: error.message });
+  }
+}

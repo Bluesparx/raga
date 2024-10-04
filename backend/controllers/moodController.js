@@ -1,7 +1,6 @@
 import Mood from '../models/MoodModel.js';
 import User from '../models/UserModel.js';
 
-
 export const createMood = async (req, res) => {
   const { stress, energy, happiness, calmness, focus, description, date } = req.body;
 
@@ -14,7 +13,6 @@ export const createMood = async (req, res) => {
       focus,
       description,
       date,
-      // tags,
       user: req.user.id 
     });
 
@@ -39,7 +37,6 @@ export const getUserMoods = async (req, res) => {
   }
 };
 
-// Get a single mood entry
 export const getMoodById = async (req, res) => {
   try {
     const mood = await Mood.findById(req.params.id);
@@ -54,7 +51,6 @@ export const getMoodById = async (req, res) => {
   }
 };
 
-// Update a mood entry
 export const updateMood = async (req, res) => {
   try {
     const mood = await Mood.findById(req.params.id);
@@ -78,7 +74,6 @@ export const updateMood = async (req, res) => {
   }
 };
 
-// Delete a mood entry
 export const deleteMood = async (req, res) => {
   try {
     const mood = await Mood.findById(req.params.id);
