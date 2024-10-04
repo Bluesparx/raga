@@ -2,19 +2,19 @@ import mongoose from "mongoose";
 
 const sleepSchema = new mongoose.Schema(
   {
-    sleepDuration: {
+    duration: {
       type: Number, 
       required: [true, "Sleep duration is required"],
       min: 0,
       max: 24
     },
-    sleepQuality: {
+    quality: {
       type: Number, 
       required: [true, "Sleep quality rating is required"],
-      min: 1,
-      max: 10
+      min: 0,
+      max: 100
     },
-    sleepDate: {
+    date: {
       type: Date,
       required: [true, "Sleep date is required"]
     },

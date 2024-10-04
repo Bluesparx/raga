@@ -32,11 +32,11 @@ const apiRequest = async (url, method, body = null) => {
 export const registerAPI = (data) => apiRequest(`${API_BASE_URL}/user/register`, 'POST', data);
 export const loginAPI = (data) => apiRequest(`${API_BASE_URL}/user/login`, 'POST', data);
 
-export const addSleepEntryAPI = (data) => apiRequest(`${API_BASE_URL}/sleep/createSleep`, 'POST', data);
-export const getUserSleepAPI = () => apiRequest(`${API_BASE_URL}/sleep/getUserSleep`, 'GET');
-export const getSleepByIdAPI = (id) => apiRequest(`${API_BASE_URL}/sleep/getSleepById/${id}`, 'GET');
-export const updateSleepEntryAPI = (id, data) => apiRequest(`${API_BASE_URL}/sleep/updateSleep/${id}`, 'PUT', data);
-export const deleteSleepEntryAPI = (id) => apiRequest(`${API_BASE_URL}/sleep/deleteSleep/${id}`, 'DELETE');
+export const addSleepEntryAPI = (data) => apiRequest(`${API_BASE_URL}/sleep`, 'POST', data);
+export const getUserSleepAPI = () => apiRequest(`${API_BASE_URL}/sleep/user`, 'GET');
+export const getSleepByIdAPI = (id) => apiRequest(`${API_BASE_URL}/sleep/${id}`, 'GET');
+export const updateSleepEntryAPI = (id, data) => apiRequest(`${API_BASE_URL}/sleep/${id}`, 'PUT', data);
+export const deleteSleepEntryAPI = (id) => apiRequest(`${API_BASE_URL}/sleep/${id}`, 'DELETE');
 
 export const addMoodEntryAPI = (data) => apiRequest(`${API_BASE_URL}/mood`, 'POST', data); 
 export const getUserMoodAPI = () => apiRequest(`${API_BASE_URL}/mood/user`, 'GET'); 

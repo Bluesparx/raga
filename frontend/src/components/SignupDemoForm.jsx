@@ -4,6 +4,8 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input"; // Assuming this is a custom component
 import { useNavigate } from "react-router-dom";
 import { NavbarDemo } from "./NavbarDemo";
+import { useAuth } from '../utils/authProvider';
+import { Vortex } from "./ui/vortex";
 
 export function SignupFormDemo() {
   const [formData, setFormData] = useState({
@@ -12,7 +14,7 @@ export function SignupFormDemo() {
     password: '',
     confirmPassword: '',
   });
-
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -42,6 +44,7 @@ export function SignupFormDemo() {
     try {
       const response = await registerAPI({name, email, password});
       console.log('Registration successful', response);
+      login();
       navigate('/');
     } catch (error) {
       console.error('Could not register:', error);
