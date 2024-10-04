@@ -1,5 +1,5 @@
 import express from "express";
-import { createSleep, getSleepById, updateSleep, deleteSleep, getUserSleep } from "../controllers/SleepController.js";
+import { createSleep, getSleepById, updateSleep, deleteSleep, getUserSleep } from "../controllers/sleepController.js";
 import { protect } from "../middleware/authMiddleware.js"; 
 
 const router = express.Router();
