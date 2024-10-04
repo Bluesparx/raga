@@ -88,7 +88,7 @@ function Navbar({ className }) {
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink href="/sleep">Sleep Tracker</HoveredLink>
             <HoveredLink href="/mood">Mood Tracker</HoveredLink>
-            <HoveredLink href="/seo">Search Engine Optimization</HoveredLink>
+            <HoveredLink href="/joke">Joke Generator</HoveredLink>
             <HoveredLink href="/branding">Branding</HoveredLink>
           </div>
         </MenuItem>
@@ -97,7 +97,7 @@ function Navbar({ className }) {
         <MenuItem setActive={setActive} active={active} item="Products">
           <div className="text-sm grid grid-cols-2 gap-10 p-4">
             <ProductItem
-              title="Algochurn"
+              title=""
               href="https://algochurn.com"
               src="https://assets.aceternity.com/demos/algochurn.webp"
               description="Prepare for tech interviews like never before."

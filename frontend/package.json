@@ -21,6 +21,7 @@
     "framer-motion": "^11.9.0",
     "lucide-react": "^0.446.0",
     "react": "^17.0.0 || ^18.0.0",
+    "react-calendar": "^5.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
     "simplex-noise": "^4.0.3",
     "styled-components": "^6.1.13",

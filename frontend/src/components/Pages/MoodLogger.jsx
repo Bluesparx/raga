@@ -78,19 +78,34 @@ const MoodLogger = () => {
               </div>
 
               <button
-                type="submit"
+                className="relative inline-block px-6 py-3 font-semibold text-white bg-purple-600 rounded-lg overflow-hidden"
+               
                 style={{
                   marginTop: '20px',
-                  padding: '12px',
-                  backgroundColor: '#4f46e5',
-                  color: 'white',
-                  borderRadius: '5px',
+                  position: 'relative',
+                  display: 'inline-block',
+                  padding: '12px 24px',
+                  fontSize: '16px',
+                  backgroundColor: '#6B46C1',
+                  borderRadius: '8px',
                   cursor: 'pointer',
+                  overflow: 'hidden',
                   border: 'none',
-                  width: '100%',
-                  fontWeight: 'bold',
+                  color: '#fff',
                 }}
               >
+                <span
+                  className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-50 animate-shimmer"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: '-150%',
+                    width: '200%',
+                    height: '100%',
+                    background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent)',
+                    animation: 'shimmer 2s infinite',
+                  }}
+                ></span>
                 Log Mood
               </button>
             </form>

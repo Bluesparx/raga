@@ -41,9 +41,9 @@ const SleepTracker = () => {
     boxShadow: '0 1px 10px rgba(0, 0, 0, 0.3)',
     border: '1px solid rgba(255, 255, 255, 0.2)',
    }}>
-            <h1 style={{ textAlign: 'center', marginBottom: '15px', fontSize: '28px', color: '#f5f5f5' }}>Mood Logger</h1>
+            <h1 style={{ textAlign: 'center', marginBottom: '15px', fontSize: '28px', color: '#f5f5f5' }}>Sleep Tracker</h1>
             <form onSubmit={handleSubmit}>
-              <h2 style={{ textAlign: 'center', marginBottom: '15px', fontSize: '18px', color: '#e0e0e0' }}>How do you feel today?</h2>
+              <h2 style={{ textAlign: 'center', marginBottom: '15px', fontSize: '18px', color: '#e0e0e0' }}>How was your sleep today?</h2>
               <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
                 {['stress', 'happiness'].map((moodType) => (
                   <div key={moodType} style={{ flex: '1 0 45%', minWidth: '150px' }}>
@@ -70,20 +70,35 @@ const SleepTracker = () => {
               </div>
 
               <button
-                type="submit"
+                className="relative inline-block px-6 py-3 font-semibold text-white bg-purple-600 rounded-lg overflow-hidden"
+               
                 style={{
                   marginTop: '20px',
-                  padding: '12px',
-                  backgroundColor: '#4f46e5',
-                  color: 'white',
-                  borderRadius: '5px',
+                  position: 'relative',
+                  display: 'inline-block',
+                  padding: '12px 24px',
+                  fontSize: '16px',
+                  backgroundColor: '#6B46C1',
+                  borderRadius: '8px',
                   cursor: 'pointer',
+                  overflow: 'hidden',
                   border: 'none',
-                  width: '100%',
-                  fontWeight: 'bold',
+                  color: '#fff',
                 }}
               >
-                Log Mood
+                <span
+                  className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-50 animate-shimmer"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: '-150%',
+                    width: '200%',
+                    height: '100%',
+                    background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent)',
+                    animation: 'shimmer 2s infinite',
+                  }}
+                ></span>
+                Track Sleep
               </button>
             </form>
           </div>

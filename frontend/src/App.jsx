@@ -6,6 +6,8 @@ import MoodLogger from './components/Pages/MoodLogger';
 import { Navbar2 } from './components/Navbar2';
 import SleepTracker from './components/Pages/SleepTracker';
 import { SignupFormDemo } from './components/SignupDemoForm';
+import MemeGenerator from './components/JokeGenerator';
+import JokeGenerator from './components/JokeGenerator';
 
 function App() {
   return (
@@ -13,9 +15,11 @@ function App() {
       <div className="App">
    
         <Routes>
-        <Route path="/" element={<MoodLogger />} />
+        <Route path="/" element={<MemeGenerator />} />
+        <Route path="/home" element={<Home />} />
           <Route path='/mood' element={<MoodLogger/>}/> 
-          <Route path='/sleep' element={<SleepTracker/>}/> 
+          <Route path='/sleep' element={<SleepTracker/>}/>
+          <Route path='/joke' element={<JokeGenerator/>}/> 
         </Routes>
    
    
