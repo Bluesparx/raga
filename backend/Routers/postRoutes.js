@@ -6,7 +6,7 @@ import {
   updatePost,
   deletePost,
   likePosts
-} from '../Controllers/PostController.js';
+} from '../Controllers/postController.js';
 import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
