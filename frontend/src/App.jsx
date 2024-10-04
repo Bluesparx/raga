@@ -9,14 +9,16 @@ import SleepTracker from "./components/Pages/SleepTracker";
 import { LoginForm } from "./components/Login";
 import { SignupFormDemo } from "./components/SignupDemoForm";
 import { useAuth } from "./utils/authProvider.jsx"; // Import the useAuth hook
+import MemeGenerator from "./components/Pages/JokeGenerator.jsx"; // Consider renaming if both components are distinct
 import JokeGenerator from "./components/Pages/JokeGenerator.jsx";
+import MoodCalendar from "./components/MoodCalendar.jsx";
 import MoodCalendarPage from "./components/Pages/MoodCalendarPage.jsx";
 import Dashboard from "./components/Pages/Dashboard.jsx";
-import MoodDemo from './components/Pages/MoodDemo.jsx'
-import MoodGraph from "./components/MoodGraph.jsx";
+import MoodDemo from './components/Pages/MoodDemo.jsx';
 import MoodGraphPage from "./components/Pages/MoodGraphPage.jsx";
 import SleepGraphPage from "./components/Pages/SleepGraphPage.jsx";
 import ContactUsPage from "./components/Pages/ContactUsPage.jsx";
+
 
 function App() {
   return (
@@ -31,9 +33,10 @@ function App() {
           <Route path="/sleep" element={<SleepTracker />} />
           <Route path="/joke" element={<JokeGenerator />} />
           <Route path="/calendar" element={<MoodCalendarPage />} />
-<Route path="/mgraph" element={<MoodGraphPage />} />
+          <Route path="/mgraph" element={<MoodGraphPage />} />
           <Route path="/sgraph" element={<SleepGraphPage />} />
           <Route path="/contact" element={<ContactUsPage />} />
+          <Route path="/blogs" element={<Dashboard/>}/>
         </Routes>
         
       </div>
