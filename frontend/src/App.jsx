@@ -21,8 +21,6 @@ function App() {
           <Route path='/login' element={<LoginForm />} />
           <Route path='/register' element={<SignupFormDemo />} />
           <Route path="/" element={<Home />} />
-          <Route path='/mood' element={<MoodLogger />} /> 
-          <Route path='/sleep' element={<SleepTracker />} /> 
         <Route path="/" element={<MemeGenerator />} />
         <Route path="/home" element={<Home />} />
           <Route path='/mood' element={<MoodLogger/>}/> 
