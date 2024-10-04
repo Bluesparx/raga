@@ -101,21 +101,28 @@ function Navbar({ className }) {
 
   return (
     <div className={`fixed top-10 inset-x-0 max-w-2xl mx-auto z-50 ${className}`}>
+     
+           
+            
       <Menu setActive={setActive}>
         {/* Services Menu Item */}
-        <MenuItem setActive={setActive} active={active} item="Services">
+        <HoveredLink href="/home">Home</HoveredLink>
+        <MenuItem setActive={setActive} active={active} item="Tracker">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink href="/sleep">Sleep Tracker</HoveredLink>
             <HoveredLink href="/mood">Mood Tracker</HoveredLink>
-            <HoveredLink href="/joke">Joke Generator</HoveredLink>
-            <HoveredLink href="/calendar">Calendar</HoveredLink>
-            <HoveredLink href="/blogs">Community</HoveredLink>
           </div>
         </MenuItem>
 
-      
+        <MenuItem setActive={setActive} active={active} item="Services">
+        <div className="flex flex-col space-y-4 text-sm">
+            <HoveredLink href="/joke">Joke Generator</HoveredLink>
+            <HoveredLink href="/calendar">Calendar</HoveredLink>
+            <HoveredLink href="/blogs">Community</HoveredLink>
+            </div>
+            </MenuItem>
         {/* Services Menu Item */}
-        <MenuItem setActive={setActive} active={active} item="Mappings">
+        <MenuItem setActive={setActive} active={active} item="Analytics">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink href="/sgraph">Sleep Map</HoveredLink>
             <HoveredLink href="/mgraph">Mood Map</HoveredLink>
@@ -125,13 +132,11 @@ function Navbar({ className }) {
 
         {/* Pricing Menu Item */}
         <MenuItem setActive={setActive} active={active} item="About">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/home">Home</HoveredLink>
-            <HoveredLink href="/contact">Contact Us</HoveredLink>
-            <HoveredLink href="/about">About us</HoveredLink>
-            <HoveredLink onClick={handleLogout}>Logout</HoveredLink>
-            
-          </div>
+        <div className="flex flex-col space-y-4 text-sm">
+        <HoveredLink href="/contact">Contact Us</HoveredLink>
+        <HoveredLink href="/about">About us</HoveredLink>
+        <HoveredLink onClick={handleLogout}>Logout</HoveredLink>
+        </div>
         </MenuItem>
       </Menu>
     </div>
