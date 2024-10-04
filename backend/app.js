@@ -18,7 +18,7 @@ connectDB();
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://zen-zone-raga.vercel.app/',
+  'https://zen-zone-raga.vercel.app',
 ];
 
 app.use(express.json());
