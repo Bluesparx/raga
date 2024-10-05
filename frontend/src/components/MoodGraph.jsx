@@ -65,10 +65,16 @@ const MoodGraph = () => {
           backdropColor: 'transparent',
         },
         grid: {
-          color: 'rgba(255, 255, 255, 0.2)',
+          color: 'white',
         },
         angleLines: {
-          color: 'rgba(255, 255, 255, 0.2)',
+          color: 'white',
+        },
+        pointLabels: {
+          color: 'white', // Change the radar chart labels to white
+          font: {
+            size: 14, 
+          },
         },
       },
     },
