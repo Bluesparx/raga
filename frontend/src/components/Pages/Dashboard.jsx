@@ -28,17 +28,7 @@ export default function Dashboard() {
             paddingBottom: "4rem",
           }}
         >
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "60%",
-              padding: "40px",
-              backgroundColor: "black",
-              borderRadius: "12px",
-              boxShadow: "0 1px 10px rgba(0, 0, 0, 0.3)",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
-            }}
-          >
+          
             {showAddPost ? (
               <div>
                 <button
@@ -62,7 +52,7 @@ export default function Dashboard() {
                 <PostList />
               </div>
             )}
-          </div>
+         
         </div>
       </Vortex>
     </div>
