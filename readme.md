@@ -1,6 +1,6 @@
 # ZENZONE- A Mental Health Application
 
-**Presentation (PPT) Link:** [Canva PPT](https://www.canva.com/design/DAGSqoIDdqQ/VgDsgaW4QOwsojEBS_-5Iw/edit?utm_content=DAGSqoIDdqQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+[Canva PPT](https://zen-zone-raga.vercel.app)
 
 A comprehensive mental health platform built with the MERN stack, enabling users to track mood and sleep, participate in a supportive community, and enjoy a built-in joke generator to boost their mood.
 ![Screenshot 2024-10-05 111006](https://github.com/user-attachments/assets/30d45d6b-2e21-407c-b175-793629cd8957)
