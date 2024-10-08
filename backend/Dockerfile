@@ -42,7 +42,7 @@ FROM node:20-alpine@sha256:66c7d989b6dabba6b4305b88f40912679aebd9f387a5b16ffa76d
 WORKDIR /app
 # Put our build/ into /usr/share/nginx/html/ and host static files
 COPY --from=builder /app /app
-CMD ["npm","build"]
+CMD ["npm","start"]
 
 
 # This does not do anything only for documentation puroposes
