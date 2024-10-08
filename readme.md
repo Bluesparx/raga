@@ -39,7 +39,7 @@ Database: MongoDB for storing user data, posts, mood/sleep logs.
 
 - Setup MONGO_URI and JWT_SECRET
 
-Start the server: npm run server
+Start the server: npm node app.js
 
 ### Frontend
 Navigate to the frontend folder.
