@@ -35,7 +35,8 @@
     "styled-components": "^6.1.13",
     "sweetalert2": "^11.14.1",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
