@@ -62,4 +62,26 @@ Visualize mood and sleep trends over time.
    ```bash
    npm run dev
 ### Docker Setup
-TBD
+1. Add your JWT_SECRET and MONGO_URI to the docker-compose.yml file
+```bash
+services:
+  raga-ui:
+    init: true
+    build: ./frontend
+    ports:
+      - "3000:80"
+  
+  raga-backend:
+    init: true
+    build: ./backend
+    environment:
+      - PORT=8080
+      - JWT_SECRET=secret
+      - MONGO_URI=urmongouri
+    ports:
+      - "8080:8080"
+```
+2. Run command
+   ```bash
+   docker compose up
+   ```
