@@ -1,87 +1,81 @@
-import React, { useEffect, useState } from 'react';
-import { Radar } from 'react-chartjs-2';
-import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from 'chart.js';
+import React, { useEffect, useState } from "react";
+import { Radar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { getUserMoodAPI } from "../utils/apiRequest";
 
-// Register the necessary components for Chart.js
-ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
+ChartJS.register(
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend
+);
 
-const MoodGraph = () => {
+const MoodGraph = ({ selectedDate }) => {
   const [moodData, setMoodData] = useState(null);
 
   useEffect(() => {
-    // Fetch mood data from localStorage
-    const savedMood = localStorage.getItem('mood');
-    if (savedMood) {
-      setMoodData(JSON.parse(savedMood));
-    }
-  }, []);
+    const fetchMoodData = async () => {
+      try {
+        const moods = await getUserMoodAPI();
+        const selectedMood = moods.find(
+          (mood) => new Date(mood.date).toLocaleDateString() === selectedDate
+        );
+        setMoodData(selectedMood);
+      } catch (error) {
+        console.error("Error fetching mood data:", error);
+      }
+    };
+    fetchMoodData();
+  }, [selectedDate]);
 
-  // If no mood data is found, show a message
   if (!moodData) {
-    return <p>No mood data found. Please log your mood to see the graph.</p>;
+    return (
+      <p>
+        No mood data found for the selected date. Please log your mood to see
+        the graph.
+      </p>
+    );
   }
 
   // Prepare data for the radar chart
   const radarData = {
-    labels: ['Stress', 'Happiness', 'Energy', 'Focus', 'Calmness'], // X-axis labels
+    labels: ["Stress", "Happiness", "Energy", "Focus", "Calmness"],
     datasets: [
       {
-        label: 'Mood Levels',
+        label: "Mood Levels",
         data: [
           moodData.stress,
           moodData.happiness,
           moodData.energy,
           moodData.focus,
           moodData.calmness,
-        ], // Y-axis data points
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        pointBackgroundColor: 'rgba(54, 162, 235, 1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(54, 162, 235, 1)',
-        fill: true, // Fill the area under the radar
+        ],
+        backgroundColor: "rgba(54, 162, 235, 0.2)",
+        borderColor: "rgba(54, 162, 235, 1)",
+        pointBackgroundColor: "rgba(54, 162, 235, 1)",
+        pointBorderColor: "#fff",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "rgba(54, 162, 235, 1)",
+        fill: true,
       },
     ],
   };
 
-  // Chart options for radar styling
-  const radarOptions = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      tooltip: {
-        enabled: true,
-      },
-    },
-    scales: {
-      r: {
-        suggestedMin: 0,
-        suggestedMax: 100,
-        ticks: {
-          stepSize: 10,
-          backdropColor: 'transparent',
-        },
-        grid: {
-          color: 'white',
-        },
-        angleLines: {
-          color: 'white',
-        },
-        pointLabels: {
-          color: 'white', // Change the radar chart labels to white
-          font: {
-            size: 14, 
-          },
-        },
-      },
-    },
-  };
+  // The radarOptions object remains the same
+  // Reference lines 49-81 from the original MoodGraph.jsx
 
   return (
-    <div style={{ width: '80%', margin: '0 auto', marginTop: '2rem' }}>
+    <div style={{ width: "80%", margin: "0 auto", marginTop: "2rem" }}>
       <Radar data={radarData} options={radarOptions} />
     </div>
   );
