@@ -11,5 +11,6 @@ services:
     environment:
       - PORT=8080
       - JWT_SECRET=secret
+      - MONGO_URI=urmongouri
     ports:
       - "8080:8080"

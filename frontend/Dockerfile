@@ -22,7 +22,7 @@ COPY --from=dependencies /app /app
 RUN npm ci
 # Copy source code into the image
 COPY . .
-# Build the site to build/
+# Build the site to dist/
 RUN npm run build
 
 ########################################################################
@@ -30,10 +30,16 @@ RUN npm run build
 # Stage 2: nginx web server to host the built site
 FROM nginx:stable-alpine@sha256:208ae3c180b7d26f6a8046fac4c8468b2ab8bd92123ab73f9c5ad0f6f1c5543d AS deploy
 
+# Remove the default Nginx configuration file
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy a custom Nginx configuration file
+COPY nginx.conf /etc/nginx/conf.d/
+
 # Put our build/ into /usr/share/nginx/html/ and host static files
 COPY --from=builder /app/dist/ /usr/share/nginx/html/
 
 EXPOSE 80
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-  CMD curl --fail localhost:8080 || exit 1
+  CMD curl --fail http://localhost:80 || exit 1
