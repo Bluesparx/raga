@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon app.js",
-    "start":"node app.js",
+    "start": "node app.js",
     "build": "node app.js"
   },
   "keywords": [],
@@ -23,6 +23,7 @@
     "helmet": "^6.1.5",
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
+    "mongodb": "^6.9.0",
     "mongoose": "^7.0.3",
     "morgan": "^1.10.0",
     "validator": "^13.9.0"
