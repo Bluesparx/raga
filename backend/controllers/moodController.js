@@ -30,12 +30,14 @@ export const createMood = async (req, res) => {
 
 export const getUserMoods = async (req, res) => {
   try {
-    const moods = await Mood.find({ user: req.user._id }).populate('user', 'username').exec();
+    const moods = await Mood.find({ user: req.user._id }).exec();
+    // console.log(moods)
     res.json(moods);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 export const getMoodById = async (req, res) => {
   try {
