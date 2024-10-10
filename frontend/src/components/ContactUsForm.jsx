@@ -69,13 +69,11 @@ const ContactUsForm = () => {
 
   return (
            
-    <div style={{width:'35rem'}}
-      className={`shadow shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8 bg-clip-padding backdrop-filter backdrop-blur-xl  bg-white/10 bg-opacity-30 rounded-lg text-white p-10 max-w-lg mx-auto ${
-        formLoaded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95"
-      }`}
+    <div
+      className={`flex flex-col items-center justify-center w-full max-w-lg mx-auto rounded-lg shadow-lg bg-white/10 bg-opacity-30 backdrop-filter backdrop-blur-xl md:p-8 p-6 space-y-4 md:space-y-6`}
     >
-      <h1 className="text-3xl font-bold text-center mb-6">Contact Us</h1>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <h1 className="text-3xl font-bold text-center mb-6 md:text-4xl">Contact Us</h1>
+      <form onSubmit={handleSubmit} className="space-y-6 w-full">
         <div className="relative">
           <label className="block text-sm font-semibold mb-2" htmlFor="name">
             Name
@@ -113,7 +111,7 @@ const ContactUsForm = () => {
             Message
           </label>
           <textarea
-            className="w-full p-3 rounded-md bg-white/30 border border-gray-600 text-white focus:ring-1 focus:ring-purple-300 focus:outline-none min-h-[100px]"
+            className="w-full p-3 rounded-md bg-white/30 border border-gray-600 text-white focus:ring-1 focus:ring-purple-300 focus:outline-none min-h-[100px] md:min-h-[150px]"
             id="message"
             name="message"
             value={formData.message}
@@ -125,7 +123,7 @@ const ContactUsForm = () => {
 
         <button
           type="submit"
-          className="mt-4 px-6 py-3 bg-purple-500 text-white rounded-full hover:bg-purple-600 text-base w-full font-semibold"
+          className="mt-4 px-6 py-3 bg-purple-500 text-white rounded-full hover:bg-purple-600 text-base w-full font-semibold md:w-auto md:flex md:items-center md:justify-center md:space-x-2"
         >
           Send Message
         </button>
