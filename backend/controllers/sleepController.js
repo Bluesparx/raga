@@ -26,7 +26,7 @@ export const createSleep = async (req, res) => {
 
 export const getUserSleep = async (req, res) => {
   try {
-    const sleeps = await Sleep.find({ user: req.user.id });
+    const sleeps = await Sleep.find({ user: req.user._id }).exec();
     res.status(200).json(sleeps);
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -37,7 +37,7 @@ const SleepGraph = ({ selectedDate }) => {
 
   // Filter sleep logs by the selected date
   const filteredLogs = sleepLogs.filter(
-    (log) => new Date(log.date).toLocaleDateString() === selectedDate
+    (log) => new Date(log.date).toLocaleDateString() === new Date(selectedDate).toLocaleDateString()
   );
 
   if (filteredLogs.length === 0) {
