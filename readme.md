@@ -3,7 +3,7 @@ Mental Health Application
 A comprehensive mental health platform built with the MERN stack, enabling users to track mood and sleep, participate in a supportive community, and enjoy a built-in joke generator to boost their mood.
 
 links
-deployed link: https://zen-rone-raga.vercel.app
+deployed link: https://zen-zone-raga.vercel.app
 PPT link: https://www.canva.com/design/DAGSqoIDdqQ/VgDsgaW4QOwsojEBS_-5Iw/edit?utm_content=DAGSqoIDdqQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 
