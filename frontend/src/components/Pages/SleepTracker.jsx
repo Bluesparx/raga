@@ -188,6 +188,7 @@ const SleepTracker = () => {
                     Date
                   </label>
                   <input
+                    max={new Date().toISOString().split('T')[0]}
                     type="date"
                     value={sleep.date}
                     onChange={(e) => handleChange("date", e.target.value)}

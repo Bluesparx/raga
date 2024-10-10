@@ -34,6 +34,7 @@ const SleepGraphPage = () => {
                                     Select a date to view the sleep graph:
                                 </label>
                                 <input
+                                    max={new Date().toISOString().split('T')[0]}
                                     type="date"
                                     id="date"
                                     value={selectedDate}
