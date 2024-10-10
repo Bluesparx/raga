@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
-import { FaSadCry } from "react-icons/fa";
-import { Vortex } from "../ui/vortex"; // Assuming Vortex is a shared component for styling
-
+import { FaRegSadTear } from "react-icons/fa";
+import { Vortex } from "../ui/vortex";
 const PageNotFound = () => {
   return (
     <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
       <Vortex className="flex flex-col items-center justify-center min-h-screen">
         <div className="w-full max-w-lg mx-auto rounded-lg p-10 bg-clip-padding backdrop-filter backdrop-blur-xl bg-white/10 bg-opacity-30 shadow-lg shadow-violet-400 text-center space-y-6">
-          <FaSadCry className="text-8xl text-violet-400 mx-auto animate-bounce mb-4" />
+          <FaRegSadTear className="text-8xl text-violet-400 mx-auto animate-bounce mb-4" />
 
           <h1 className="text-6xl font-bold leading-tight text-gray-100">
             404
