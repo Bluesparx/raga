@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginAPI } from "../utils/apiRequest";
-import { useAuth } from "../utils/authProvider";
-import { Vortex } from "./ui/vortex";
-import { NavbarDemo } from "./NavbarDemo";
+import { loginAPI } from "../../utils/apiRequest";
+import { useAuth } from "../../utils/authProvider";
+import { Vortex } from "../ui/vortex";
+import { NavbarDemo } from "../NavbarDemo";
 
-export function LoginForm() {
+const LoginForm = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -46,7 +46,7 @@ export function LoginForm() {
   return (
     <>
       <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
-        <NavbarDemo className="mb-4" />
+        {/* <NavbarDemo className="mb-4" /> */}
         <Vortex className="mt-20 pt-10 z-10">
           <div className="w-full mx-auto rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="shadow shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8 bg-clip-padding backdrop-filter backdrop-blur-xl  bg-white/10 bg-opacity-30 rounded-lg text-white p-10 max-w-lg mx-auto ">
@@ -137,3 +137,5 @@ export function LoginForm() {
     </>
   );
 }
+
+export default LoginForm

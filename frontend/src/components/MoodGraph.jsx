@@ -27,9 +27,17 @@ const MoodGraph = ({ selectedDate }) => {
     const fetchMoodData = async () => {
       try {
         const moods = await getUserMoodAPI();
-        const selectedMood = moods.find(
-          (mood) => new Date(mood.date).toLocaleDateString() === selectedDate
-        );
+        console.log("Selected Date:", selectedDate);
+        const selectedDateFormatted = new Date(selectedDate).toISOString().split("T")[0];
+
+        const selectedMood = moods.find((mood) => {
+          const moodDateFormatted = new Date(mood.date).toISOString().split("T")[0]; // Format the mood date
+          // console.log("Mood Date:", moodDateFormatted);
+        
+          // Compare 
+          return moodDateFormatted === selectedDateFormatted;
+        });
+
         setMoodData(selectedMood);
       } catch (error) {
         console.error("Error fetching mood data:", error);
@@ -37,10 +45,11 @@ const MoodGraph = ({ selectedDate }) => {
     };
     fetchMoodData();
   }, [selectedDate]);
+  
 
   if (!moodData) {
     return (
-      <p>
+      <p className="text-gray-100">
         No mood data found for the selected date. Please log your mood to see
         the graph.
       </p>
@@ -71,9 +80,40 @@ const MoodGraph = ({ selectedDate }) => {
     ],
   };
 
-  // The radarOptions object remains the same
-  // Reference lines 49-81 from the original MoodGraph.jsx
-
+    // Chart options for radar styling
+    const radarOptions = {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        tooltip: {
+          enabled: true,
+        },
+      },
+      scales: {
+        r: {
+          suggestedMin: 0,
+          suggestedMax: 100,
+          ticks: {
+            stepSize: 10,
+            backdropColor: 'transparent',
+          },
+          grid: {
+            color: 'white',
+          },
+          angleLines: {
+            color: 'white',
+          },
+          pointLabels: {
+            color: 'white', // Change the radar chart labels to white
+            font: {
+              size: 14, 
+            },
+          },
+        },
+      },
+    };
   return (
     <div style={{ width: "80%", margin: "0 auto", marginTop: "2rem" }}>
       <Radar data={radarData} options={radarOptions} />

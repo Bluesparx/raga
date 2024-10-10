@@ -21,9 +21,9 @@ const Home = () => {
           top-[75%] 
           w-[200px]
           h-[60px]
-          border-pink-400 text-pink-500 rounded-full
-          hover:bg-pink-500
-          hover:text-black
+          border-violet-400 text-violet-200 rounded-full
+          hover:bg-purple-500
+          hover:text-white
           hover:border-black"
           onClick={handleGetStarted}
         >

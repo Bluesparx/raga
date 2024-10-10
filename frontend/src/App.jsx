@@ -1,13 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { WavyBackgroundDemo } from "./components/WavyBackgroundDemo";
 import Home from "./components/Pages/Home";
 import MoodLogger from "./components/Pages/MoodLogger";
-import { Navbar2 } from "./components/Navbar2";
-import { NavbarDemo } from "./components/NavbarDemo"; // Your demo navbar component
 import SleepTracker from "./components/Pages/SleepTracker";
-import { LoginForm } from "./components/Login";
-import { SignupFormDemo } from "./components/SignupDemoForm";
+import LoginForm from "./components/Pages/Login.jsx";
+import SignupForm from "./components/Pages/Signup.jsx";
 import { useAuth } from "./utils/authProvider.jsx";
 import JokeGenerator from "./components/Pages/JokeGenerator.jsx";
 import MoodCalendarPage from "./components/Pages/MoodCalendarPage.jsx";
@@ -16,8 +13,6 @@ import MoodGraphPage from "./components/Pages/MoodGraphPage.jsx";
 import SleepGraphPage from "./components/Pages/SleepGraphPage.jsx";
 import ContactUsPage from "./components/Pages/ContactUsPage.jsx";
 import AboutUsPage from "./components/Pages/AboutUsPage.jsx";
-import AboutUsLogOut from "./components/Pages/AboutUsLogout.jsx";
-import HomeLoggedOut from "./components/Pages/HomeLoggedOut.jsx";
 import { AuthProvider } from "./utils/authProvider.jsx";
 
 import NavbarSwitch from "./utils/navbarSwitch.jsx";
@@ -32,7 +27,7 @@ function App() {
           <NavbarSwitch />
           <Routes>
             <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<SignupFormDemo />} />
+            <Route path="/register" element={<SignupForm/>} />
             {/* <Route path="/" element={<HomeLoggedOut />} /> */}
             <Route path="/" element={<Home />} />
             <Route path="/mood" element={<MoodLogger />} />
