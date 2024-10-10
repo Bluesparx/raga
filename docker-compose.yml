@@ -1,0 +1,19 @@
+services:
+  raga-ui:
+    init: true
+    build: ./frontend
+    ports:
+      - "3000:80"
+  
+  raga-backend:
+    init: true
+    build: ./backend
+    environment:
+      - PORT=8080
+      - JWT_SECRET=secret
+      - MONGO_URI=urmongouri
+    ports:
+      - "8080:8080"
+
+
+

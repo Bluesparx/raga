@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/authProvider";
-
+import { Menu as MenuIcon, X } from "lucide-react";
 
 // MenuItem component
-export const MenuItem = ({ setActive, active, item, children }) => {
+export const MenuItem = ({ setActive, active, item, children, onClick }) => {
   return (
     <div
       onMouseEnter={() => setActive(item)}
+      onClick={onClick}
       className="relative group"
     >
       <p
@@ -18,7 +19,7 @@ export const MenuItem = ({ setActive, active, item, children }) => {
         {item}
       </p>
       {active === item && (
-        <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-4">
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-4 hidden md:block">
           <div className="bg-black backdrop-blur-md rounded-xl overflow-hidden border border-white/20 shadow-lg">
             <div className="w-max h-full p-4">{children}</div>
           </div>
@@ -88,16 +89,12 @@ export function NavbarDemo() {
   );
 }
 
-
-
-// NavbarDemo component
+// Navbar2 component
 export function Navbar2() {
   return (
     <div className="relative w-full flex items-center justify-center">
       <Navbar className="top-2" />
-      <p className="text-white">
-      
-      </p>
+      <p className="text-white"></p>
     </div>
   );
 }
@@ -105,6 +102,7 @@ export function Navbar2() {
 // Navbar component
 function Navbar({ className }) {
   const [active, setActive] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
 
@@ -112,48 +110,86 @@ function Navbar({ className }) {
     logout();
     navigate("/login"); 
   }
-  
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <div className={`fixed top-10 inset-x-0 max-w-2xl mx-auto z-50 ${className}`}>
-     
-           
-            
-      <Menu setActive={setActive}>
-        {/* Services Menu Item */}
-        <HoveredLink href="/">Home</HoveredLink>
-        <MenuItem setActive={setActive} active={active} item="Tracker">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/sleep">Sleep Tracker</HoveredLink>
-            <HoveredLink href="/mood">Mood Tracker</HoveredLink>
-          </div>
-        </MenuItem>
-
-        <MenuItem setActive={setActive} active={active} item="Services">
-        <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/joke">Joke Generator</HoveredLink>
-            <HoveredLink href="/calendar">Calendar</HoveredLink>
-            <HoveredLink href="/blogs">Community</HoveredLink>
+      {/* Desktop Menu */}
+      <div className="hidden md:block">
+        <Menu setActive={setActive}>
+          <HoveredLink href="/">Home</HoveredLink>
+          <MenuItem setActive={setActive} active={active} item="Tracker">
+            <div className="flex flex-col space-y-4 text-sm">
+              <HoveredLink href="/sleep">Sleep Tracker</HoveredLink>
+              <HoveredLink href="/mood">Mood Tracker</HoveredLink>
             </div>
-            </MenuItem>
-        {/* Services Menu Item */}
-        <MenuItem setActive={setActive} active={active} item="Analytics">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/sgraph">Sleep Map</HoveredLink>
-            <HoveredLink href="/mgraph">Mood Map</HoveredLink>
-           
-          </div>
-        </MenuItem>
+          </MenuItem>
+          <MenuItem setActive={setActive} active={active} item="Services">
+            <div className="flex flex-col space-y-4 text-sm">
+              <HoveredLink href="/joke">Joke Generator</HoveredLink>
+              <HoveredLink href="/calendar">Calendar</HoveredLink>
+              <HoveredLink href="/blogs">Community</HoveredLink>
+            </div>
+          </MenuItem>
+          <MenuItem setActive={setActive} active={active} item="Analytics">
+            <div className="flex flex-col space-y-4 text-sm">
+              <HoveredLink href="/sgraph">Sleep Map</HoveredLink>
+              <HoveredLink href="/mgraph">Mood Map</HoveredLink>
+            </div>
+          </MenuItem>
+          <MenuItem setActive={setActive} active={active} item="About">
+            <div className="flex flex-col space-y-4 text-sm">
+              <HoveredLink href="/contact">Contact Us</HoveredLink>
+              <HoveredLink href="/about">About us</HoveredLink>
+              <HoveredLink onClick={handleLogout}>Logout</HoveredLink>
+            </div>
+          </MenuItem>
+        </Menu>
+      </div>
 
-        {/* Pricing Menu Item */}
-        <MenuItem setActive={setActive} active={active} item="About">
-        <div className="flex flex-col space-y-4 text-sm">
-        <HoveredLink href="/contact">Contact Us</HoveredLink>
-        <HoveredLink href="/about">About us</HoveredLink>
-        <HoveredLink onClick={handleLogout}>Logout</HoveredLink>
+      {/* Mobile Menu Button */}
+      <div className="md:hidden">
+        <button
+          onClick={toggleMenu}
+          className="fixed top-5 right-5 z-50 p-2 bg-black/90 rounded-full border border-white/20"
+        >
+          {isMenuOpen ? <X className="text-white" /> : <MenuIcon className="text-white" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 bg-black/90 z-40 flex items-center justify-center md:hidden">
+          <nav className="flex flex-col items-center space-y-6">
+            <HoveredLink href="/">Home</HoveredLink>
+            <div className="flex flex-col items-center">
+              <p className="text-white text-lg font-semibold mb-2">Tracker</p>
+              <HoveredLink href="/sleep">Sleep Tracker</HoveredLink>
+              <HoveredLink href="/mood">Mood Tracker</HoveredLink>
+            </div>
+            <div className="flex flex-col items-center">
+              <p className="text-white text-lg font-semibold mb-2">Services</p>
+              <HoveredLink href="/joke">Joke Generator</HoveredLink>
+              <HoveredLink href="/calendar">Calendar</HoveredLink>
+              <HoveredLink href="/blogs">Community</HoveredLink>
+            </div>
+            <div className="flex flex-col items-center">
+              <p className="text-white text-lg font-semibold mb-2">Analytics</p>
+              <HoveredLink href="/sgraph">Sleep Map</HoveredLink>
+              <HoveredLink href="/mgraph">Mood Map</HoveredLink>
+            </div>
+            <div className="flex flex-col items-center">
+              <p className="text-white text-lg font-semibold mb-2">About</p>
+              <HoveredLink href="/contact">Contact Us</HoveredLink>
+              <HoveredLink href="/about">About us</HoveredLink>
+              <HoveredLink onClick={() => { toggleMenu(); handleLogout(); }}>Logout</HoveredLink>
+            </div>
+          </nav>
         </div>
-        </MenuItem>
-      </Menu>
+      )}
     </div>
   );
 }
+
+export default Navbar;

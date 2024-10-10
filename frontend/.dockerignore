@@ -1,0 +1,9 @@
+node_modules/
+# ignore the build and cache directories
+dist/
+# dev tools, config
+.vscode/
+.prettier*
+.git/
+.github/
+.git*
