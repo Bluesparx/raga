@@ -17,6 +17,7 @@ import { AuthProvider } from "./utils/authProvider.jsx";
 
 import NavbarSwitch from "./utils/navbarSwitch.jsx";
 import ForgotPassword from "./components/Pages/ForgotPassword.jsx";
+import AuthenticatedRoute from "./utils/useAuthContext";
 
 function App() {
   const token = useAuth();
@@ -27,20 +28,42 @@ function App() {
           <NavbarSwitch />
           <Routes>
             <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<SignupForm/>} />
+            <Route path="/register" element={<SignupForm />} />
             {/* <Route path="/" element={<HomeLoggedOut />} /> */}
-            <Route path="/" element={<Home />} />
-            <Route path="/mood" element={<MoodLogger />} />
-            <Route path="/sleep" element={<SleepTracker />} />
-            <Route path="/joke" element={<JokeGenerator />} />
-            <Route path="/calendar" element={<MoodCalendarPage />} />
-            <Route path="/mgraph" element={<MoodGraphPage />} />
-            <Route path="/sgraph" element={<SleepGraphPage />} />
-            <Route path="/contact" element={<ContactUsPage />} />
             {/* <Route path="/aboutus" element={<AboutUsLogOut />} /> */}
-            <Route path="/blogs" element={<Dashboard />} />
             <Route path="/about" element={<AboutUsPage />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/" element={<Home />} />
+
+            {/* Protected Routes */}
+            <Route
+              path="/mood"
+              element={<AuthenticatedRoute element={<MoodLogger />} />}
+            />
+            <Route
+              path="/sleep"
+              element={<AuthenticatedRoute element={<SleepTracker />} />}
+            />
+            <Route
+              path="/joke"
+              element={<AuthenticatedRoute element={<JokeGenerator />} />}
+            />
+            <Route
+              path="/calendar"
+              element={<AuthenticatedRoute element={<MoodCalendarPage />} />}
+            />
+            <Route
+              path="/mgraph"
+              element={<AuthenticatedRoute element={<MoodGraphPage />} />}
+            />
+            <Route
+              path="/sgraph"
+              element={<AuthenticatedRoute element={<SleepGraphPage />} />}
+            />
+            <Route
+              path="/blogs"
+              element={<AuthenticatedRoute element={<Dashboard />} />}
+            />
           </Routes>
         </div>
       </Router>
