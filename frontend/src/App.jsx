@@ -2,7 +2,7 @@ import { useLocation, useRoutes } from "react-router-dom";
 import Home from "./components/Pages/Home";
 import MoodLogger from "./components/Pages/MoodLogger";
 import LoginForm from "./components/Pages/Login.jsx";
-import SignupFormDemo from "./components/Pages/Signup.jsx";
+import SignupForm from "./components/Pages/Signup.jsx";
 import { useAuth } from "./utils/authProvider.jsx";
 import JokeGenerator from "./components/Pages/JokeGenerator.jsx";
 import MoodCalendarPage from "./components/Pages/MoodCalendarPage.jsx";
@@ -20,7 +20,7 @@ import { AuthProvider } from "./utils/authProvider.jsx";
 const routeDefinitions = [
   { path: "/", element: <Home /> },
   { path: "/login", element: <LoginForm /> },
-  { path: "/register", element: <SignupFormDemo /> },
+  { path: "/register", element: <SignupForm /> },
   { path: "/mood", element: <MoodLogger /> },
   { path: "/sleep", element: <SleepTracker /> },
   { path: "/joke", element: <JokeGenerator /> },
