@@ -17,6 +17,7 @@ import { AuthProvider } from "./utils/authProvider.jsx";
 
 import NavbarSwitch from "./utils/navbarSwitch.jsx";
 import ForgotPassword from "./components/Pages/ForgotPassword.jsx";
+import BreathingGame from "./components/Pages/Breathing.jsx";
 
 function App() {
   const token = useAuth();
@@ -41,6 +42,7 @@ function App() {
             <Route path="/blogs" element={<Dashboard />} />
             <Route path="/about" element={<AboutUsPage />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/breathing-game" element={<BreathingGame />} />
           </Routes>
         </div>
       </Router>
