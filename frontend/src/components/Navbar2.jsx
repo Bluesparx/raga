@@ -130,6 +130,7 @@ function Navbar({ className }) {
               <HoveredLink href="/joke">Joke Generator</HoveredLink>
               <HoveredLink href="/calendar">Calendar</HoveredLink>
               <HoveredLink href="/blogs">Community</HoveredLink>
+              <HoveredLink href="/breathing-game">Breathing Exercise</HoveredLink>
             </div>
           </MenuItem>
           <MenuItem setActive={setActive} active={active} item="Analytics">
