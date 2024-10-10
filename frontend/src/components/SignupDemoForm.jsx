@@ -5,6 +5,7 @@ import { useAuth } from "../utils/authProvider";
 import { Vortex } from './ui/vortex';
 import { NavbarDemo } from "./NavbarDemo";
 import { toast } from 'react-hot-toast'; // Import the toast function
+import GoogleAuthButton from "./GoogleAuthButton";
 
 export function SignupFormDemo() {
   const [formData, setFormData] = useState({
@@ -123,6 +124,15 @@ export function SignupFormDemo() {
                   <a href="#" className="text-sm font-medium text-violet-400 hover:underline dark:text-violet-300">Forgot password?</a>
                 </div>
                 <button type="submit" className="w-full text-white bg-violet-400 hover:bg-violet-500 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-violet-600 dark:hover:bg-violet-700 dark:focus:ring-violet-800">Sign up</button>
+                <div className="flex items-center w-full my-6">
+                  <div className="flex-grow border-t border-gray-300"></div>
+                  <span className="px-4 text-gray-500 font-semibold">OR</span>
+                  <div className="flex-grow border-t border-gray-300"></div>
+                </div>
+
+                <div className="flex justify-center">
+                  <GoogleAuthButton />
+                </div>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account? <a href="/login" className="font-medium text-violet-400 hover:underline dark:text-violet-300">Login</a>
                 </p>
