@@ -1,10 +1,8 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useLocation, useRoutes } from "react-router-dom";
 import Home from "./components/Pages/Home";
 import MoodLogger from "./components/Pages/MoodLogger";
-import SleepTracker from "./components/Pages/SleepTracker";
 import LoginForm from "./components/Pages/Login.jsx";
-import SignupForm from "./components/Pages/Signup.jsx";
+import SignupFormDemo from "./components/Pages/Signup.jsx";
 import { useAuth } from "./utils/authProvider.jsx";
 import JokeGenerator from "./components/Pages/JokeGenerator.jsx";
 import MoodCalendarPage from "./components/Pages/MoodCalendarPage.jsx";
@@ -13,37 +11,44 @@ import MoodGraphPage from "./components/Pages/MoodGraphPage.jsx";
 import SleepGraphPage from "./components/Pages/SleepGraphPage.jsx";
 import ContactUsPage from "./components/Pages/ContactUsPage.jsx";
 import AboutUsPage from "./components/Pages/AboutUsPage.jsx";
+import ForgotPassword from "./components/Pages/ForgotPassword.jsx";
+import PageNotFound from "./components/Pages/PageNotFound.jsx";
+import NavbarSwitch from "./utils/navbarSwitch.jsx";
+import SleepTracker from "./components/Pages/SleepTracker.jsx";
 import { AuthProvider } from "./utils/authProvider.jsx";
 
-import NavbarSwitch from "./utils/navbarSwitch.jsx";
-import ForgotPassword from "./components/Pages/ForgotPassword.jsx";
+const routeDefinitions = [
+  { path: "/", element: <Home /> },
+  { path: "/login", element: <LoginForm /> },
+  { path: "/register", element: <SignupFormDemo /> },
+  { path: "/mood", element: <MoodLogger /> },
+  { path: "/sleep", element: <SleepTracker /> },
+  { path: "/joke", element: <JokeGenerator /> },
+  { path: "/calendar", element: <MoodCalendarPage /> },
+  { path: "/mgraph", element: <MoodGraphPage /> },
+  { path: "/sgraph", element: <SleepGraphPage /> },
+  { path: "/contact", element: <ContactUsPage /> },
+  { path: "/blogs", element: <Dashboard /> },
+  { path: "/about", element: <AboutUsPage /> },
+  { path: "/forgot-password", element: <ForgotPassword /> },
+  { path: "*", element: <PageNotFound /> },
+];
 
 function App() {
   const token = useAuth();
+  const location = useLocation();
+  const routing = useRoutes(routeDefinitions);
+
+  // Check if the current path is defined in the routeDefinitions
+  const isDefinedRoute = routeDefinitions.some(
+    (route) => route.path === location.pathname
+  );
+
   return (
     <AuthProvider>
-      <Router>
-        <div className="App bg-black">
-          <NavbarSwitch />
-          <Routes>
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<SignupForm/>} />
-            {/* <Route path="/" element={<HomeLoggedOut />} /> */}
-            <Route path="/" element={<Home />} />
-            <Route path="/mood" element={<MoodLogger />} />
-            <Route path="/sleep" element={<SleepTracker />} />
-            <Route path="/joke" element={<JokeGenerator />} />
-            <Route path="/calendar" element={<MoodCalendarPage />} />
-            <Route path="/mgraph" element={<MoodGraphPage />} />
-            <Route path="/sgraph" element={<SleepGraphPage />} />
-            <Route path="/contact" element={<ContactUsPage />} />
-            {/* <Route path="/aboutus" element={<AboutUsLogOut />} /> */}
-            <Route path="/blogs" element={<Dashboard />} />
-            <Route path="/about" element={<AboutUsPage />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-          </Routes>
-        </div>
-      </Router>
+      <div className="App bg-black">
+        {isDefinedRoute && <NavbarSwitch />} {routing}
+      </div>
     </AuthProvider>
   );
 }
