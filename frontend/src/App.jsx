@@ -16,6 +16,7 @@ import PageNotFound from "./components/Pages/PageNotFound.jsx";
 import NavbarSwitch from "./utils/navbarSwitch.jsx";
 import SleepTracker from "./components/Pages/SleepTracker.jsx";
 import { AuthProvider } from "./utils/authProvider.jsx";
+import BreathingGame from "./components/Pages/Breathing.jsx";
 
 const routeDefinitions = [
   { path: "/", element: <Home /> },
@@ -31,9 +32,10 @@ const routeDefinitions = [
   { path: "/blogs", element: <Dashboard /> },
   { path: "/about", element: <AboutUsPage /> },
   { path: "/forgot-password", element: <ForgotPassword /> },
+  { path:"/breathing-game", element: <BreathingGame />},
   { path: "*", element: <PageNotFound /> },
 ];
-
+   
 function App() {
   const token = useAuth();
   const location = useLocation();
