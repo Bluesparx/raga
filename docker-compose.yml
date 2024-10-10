@@ -14,6 +14,3 @@ services:
       - MONGO_URI=urmongouri
     ports:
       - "8080:8080"
-
-
-

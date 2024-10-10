@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
 
 // MenuItem component
-export const MenuItem = ({ setActive, active, item, children, onClick }) => {
+export const MenuItem = ({ setActive, active, item, children }) => {
   return (
     <div
       onMouseEnter={() => setActive(item)}
-      onClick={onClick}
       className="relative group"
     >
       <p
@@ -16,8 +14,8 @@ export const MenuItem = ({ setActive, active, item, children, onClick }) => {
       >
         {item}
       </p>
-      {active === item && children && (
-        <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-4 hidden md:block">
+      {active === item && (
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-4">
           <div className="bg-black backdrop-blur-md rounded-xl overflow-hidden border border-white/20 shadow-lg">
             <div className="w-max h-full p-4">{children}</div>
           </div>
@@ -28,7 +26,7 @@ export const MenuItem = ({ setActive, active, item, children, onClick }) => {
 };
 
 // Menu component
-export const MenuDesktop = ({ setActive, children }) => {
+export const Menu = ({ setActive, children }) => {
   return (
     <nav
       onMouseLeave={() => setActive(null)}
@@ -39,10 +37,29 @@ export const MenuDesktop = ({ setActive, children }) => {
   );
 };
 
-// HoveredLink component
-export const HoveredLink = ({ children, href, onClick }) => {
+// ProductItem component (for dropdown content if needed)
+export const ProductItem = ({ title, description, href, src }) => {
   return (
-    <a href={href} onClick={onClick} className="text-neutral-200 hover:text-blue-500 transition duration-150">
+    <a href={href} className="flex space-x-4">
+      <img
+        src={src}
+        width={140}
+        height={70}
+        alt={title}
+        className="flex-shrink-0 rounded-lg shadow-lg"
+      />
+      <div>
+        <h4 className="text-lg font-semibold text-white">{title}</h4>
+        <p className="text-sm text-neutral-300">{description}</p>
+      </div>
+    </a>
+  );
+};
+
+// HoveredLink component
+export const HoveredLink = ({ children, href }) => {
+  return (
+    <a href={href} className="text-neutral-200 hover:text-blue-500 transition duration-150">
       {children}
     </a>
   );
@@ -60,60 +77,24 @@ export function NavbarDemo() {
 // Navbar component
 function Navbar({ className }) {
   const [active, setActive] = useState(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const menuItems = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Login", href: "/login" },
-    { label: "Sign Up", href: "/register" },
-    { label: "Contact Us", href: "/contact" },
-  ];
 
   return (
-    <div className={`fixed top-5 inset-x-0 max-w-3xl mx-auto z-50 ${className}`}>
-      {/* Desktop Menu */}
-      <div className="hidden md:block">
-        <MenuDesktop setActive={setActive}>
-          {menuItems.map((item) => (
-            <HoveredLink key={item.label} href={item.href}>
-              <MenuItem setActive={setActive} active={active} item={item.label} />
-            </HoveredLink>
-          ))}
-        </MenuDesktop>
-      </div>
+    <div className="fixed top-5 inset-x-0 max-w-3xl mx-auto z-50 ${className}">
+      <Menu setActive={setActive}>
+        {/* Home */}
+        <HoveredLink href="/"><MenuItem item="Home" /></HoveredLink>
 
-      {/* Mobile Menu Button */}
-      <div className="md:hidden">
-        <button
-          onClick={toggleMenu}
-          className="fixed top-5 right-5 z-50 p-2 bg-black/90 rounded-full border border-white/20"
-        >
-          {isMenuOpen ? <X className="text-white" /> : <Menu className="text-white" />}
-        </button>
-      </div>
+        {/* About */}
+        <HoveredLink href="/about"><MenuItem item="About" /></HoveredLink>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 bg-black/90 z-40 flex items-center justify-center">
-          <nav className="flex flex-col items-center space-y-6">
-            {menuItems.map((item) => (
-              <HoveredLink key={item.label} href={item.href} onClick={toggleMenu}>
-                <MenuItem
-                  setActive={setActive}
-                  active={active}
-                  item={item.label}
-                  onClick={toggleMenu}
-                />
-              </HoveredLink>
-            ))}
-          </nav>
-        </div>
-      )}
+        {/* Login */}
+        <HoveredLink href="/login"><MenuItem item="Login" /></HoveredLink>
+
+        {/* Sign Up */}
+        <HoveredLink href="/register"><MenuItem item="Sign Up" /></HoveredLink>
+  
+        <HoveredLink href="/contact"><MenuItem item="Contact Us"/></HoveredLink>
+        </Menu>
     </div>
   );
-}
-
-export default Navbar;
+};
