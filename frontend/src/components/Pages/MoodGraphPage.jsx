@@ -35,6 +35,7 @@ const MoodGraphPage = () => {
                                     Select a date to view the mood graph:
                                 </label>
                                 <input
+                                    max={new Date().toISOString().split('T')[0]}
                                     type="date"
                                     id="date"
                                     value={selectedDate}

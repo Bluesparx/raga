@@ -246,6 +246,7 @@ const MoodLogger = () => {
                     Date
                   </label>
                   <input
+                    max={new Date().toISOString().split('T')[0]}
                     type="date"
                     value={mood.date}
                     onChange={(e) => handleChange("date", e.target.value)}
