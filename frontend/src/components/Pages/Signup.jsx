@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { registerAPI } from "../utils/apiRequest"; // Assuming you have a signup API function
-import { useAuth } from "../utils/authProvider";
-import { Vortex } from "./ui/vortex";
-import { NavbarDemo } from "./NavbarDemo";
+import { registerAPI } from "../../utils/apiRequest"; // Assuming you have a signup API function
+import { useAuth } from "../../utils/authProvider";
+import { Vortex } from "../ui/vortex";
+import { NavbarDemo } from "../NavbarDemo";
 import { toast } from "react-hot-toast"; // Import the toast function
 
-export function SignupFormDemo() {
+const SignupForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -55,7 +55,7 @@ export function SignupFormDemo() {
   return (
     <>
       <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
-        <NavbarDemo className="mb-4" />
+        {/* <NavbarDemo className="mb-4" /> */}
         <Vortex className="mt-20 pt-10 z-10">
           <div className="w-full mx-auto rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="shadow shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8 bg-clip-padding backdrop-filter backdrop-blur-xl  bg-white/10 bg-opacity-30 rounded-lg text-white p-10 max-w-lg mx-auto ">
@@ -183,3 +183,5 @@ export function SignupFormDemo() {
     </>
   );
 }
+
+export default SignupForm;
