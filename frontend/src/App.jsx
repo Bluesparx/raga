@@ -1,4 +1,4 @@
-import { useLocation, useRoutes } from "react-router-dom";
+import { useLocation, useRoutes, BrowserRouter as Router } from "react-router-dom";
 import Home from "./components/Pages/Home";
 import MoodLogger from "./components/Pages/MoodLogger";
 import LoginForm from "./components/Pages/Login.jsx";
@@ -23,14 +23,14 @@ const routeDefinitions = [
   { path: "/", element: <Home /> },
   { path: "/login", element: <LoginForm /> },
   { path: "/register", element: <SignupForm /> },
-  { path: "/mood", element: <MoodLogger /> },
-  { path: "/sleep", element: <SleepTracker /> },
-  { path: "/joke", element: <JokeGenerator /> },
-  { path: "/calendar", element: <MoodCalendarPage /> },
-  { path: "/mgraph", element: <MoodGraphPage /> },
-  { path: "/sgraph", element: <SleepGraphPage /> },
+  { path: "/mood", element: <AuthenticatedRoute element={<MoodLogger />} /> },
+  { path: "/sleep", element: <AuthenticatedRoute element={<SleepTracker />} /> },
+  { path: "/joke", element: <AuthenticatedRoute element={<JokeGenerator />} /> },
+  { path: "/calendar", element: <AuthenticatedRoute element={<MoodCalendarPage />} /> },
+  { path: "/mgraph", element: <AuthenticatedRoute element={<MoodGraphPage />} /> },
+  { path: "/sgraph", element: <AuthenticatedRoute element={<SleepGraphPage />} /> },
   { path: "/contact", element: <ContactUsPage /> },
-  { path: "/blogs", element: <Dashboard /> },
+  { path: "/blogs", element: <AuthenticatedRoute element={<Dashboard />} /> },
   { path: "/about", element: <AboutUsPage /> },
   { path: "/forgot-password", element: <ForgotPassword /> },
   { path:"/breathing-game", element: <BreathingGame />},
@@ -49,55 +49,10 @@ function App() {
 
   return (
     <AuthProvider>
-      <Router>
         <div className="App bg-black">
-          <NavbarSwitch />
-          <Routes>
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<SignupForm />} />
-            {/* <Route path="/" element={<HomeLoggedOut />} /> */}
-            {/* <Route path="/aboutus" element={<AboutUsLogOut />} /> */}
-            <Route path="/about" element={<AboutUsPage />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/" element={<Home />} />
-
-            {/* Protected Routes */}
-            <Route
-              path="/mood"
-              element={<AuthenticatedRoute element={<MoodLogger />} />}
-            />
-            <Route
-              path="/sleep"
-              element={<AuthenticatedRoute element={<SleepTracker />} />}
-            />
-            <Route
-              path="/joke"
-              element={<AuthenticatedRoute element={<JokeGenerator />} />}
-            />
-            <Route
-              path="/calendar"
-              element={<AuthenticatedRoute element={<MoodCalendarPage />} />}
-            />
-            <Route
-              path="/mgraph"
-              element={<AuthenticatedRoute element={<MoodGraphPage />} />}
-            />
-            <Route
-              path="/sgraph"
-              element={<AuthenticatedRoute element={<SleepGraphPage />} />}
-            />
-            <Route
-              path="/blogs"
-              element={<AuthenticatedRoute element={<Dashboard />} />}
-            />
-          </Routes>
+          {isDefinedRoute && <NavbarSwitch />}
+          {routing}
         </div>
-      </Router>
-
-      <div className="App bg-black">
-        {isDefinedRoute && <NavbarSwitch />} {routing}
-      </div>
-      main
     </AuthProvider>
   );
 }
