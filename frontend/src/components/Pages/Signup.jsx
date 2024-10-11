@@ -5,7 +5,7 @@ import { useAuth } from "../../utils/authProvider";
 import { Vortex } from "../ui/vortex";
 import { NavbarDemo } from "../NavbarDemo";
 import { toast } from "react-hot-toast"; // Import the toast function
-
+import GoogleAuthButton from "./GoogleAuthButton";
 const SignupForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -166,6 +166,15 @@ const SignupForm = () => {
                 >
                   Sign up
                 </button>
+                <div className="flex items-center w-full my-6">
+                  <div className="flex-grow border-t border-gray-300"></div>
+                  <span className="px-4 text-gray-500 font-semibold">OR</span>
+                  <div className="flex-grow border-t border-gray-300"></div>
+                </div>
+
+                <div className="flex justify-center">
+                  <GoogleAuthButton />
+                </div>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?{" "}
                   <a
