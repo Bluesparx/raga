@@ -49,16 +49,18 @@ const LoginForm = () => {
       <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
         {/* <NavbarDemo className="mb-4" /> */}
         <Vortex className="mt-20 pt-10 z-10">
-          <div className="w-full mx-auto rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div className="shadow shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8 bg-clip-padding backdrop-filter backdrop-blur-xl  bg-white/10 bg-opacity-30 rounded-lg text-white p-10 max-w-lg mx-auto ">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-100 md:text-2xl dark:text-white">
+          <div className="mx-auto rounded-lg dark:border md:mt-0 w-9/12 xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div className="shadow flex max-sm:flex-col-reverse gap-10 shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8 bg-clip-padding backdrop-filter backdrop-blur-xl  bg-white/10 bg-opacity-30 rounded-lg text-white p-10  mx-auto ">
+            <div className="w-1/2 max-sm:w-full" >
+            <h1 className="text-4xl font-semibold mb-5"><span className="text-violet-400">Zen</span>Zone</h1>
+            <h1 className="text-lg mb-4 font-medium leading-tight tracking-tight text-gray-100 md:text-2xl dark:text-white">
                 Login to your account
               </h1>
               <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-200 dark:text-white"
+                    className="  block mb-2 text-sm font-medium text-gray-200 dark:text-white"
                   >
                     Your email
                   </label>
@@ -66,7 +68,7 @@ const LoginForm = () => {
                     type="email"
                     name="email"
                     id="email"
-                    className="bg-white/30 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-white/30 text-black rounded-lg outline-none focus:outline-violet-400 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required
                     onChange={handleChange}
@@ -84,7 +86,7 @@ const LoginForm = () => {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className="bg-white/30 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-white/30 text-black rounded-lg outline-none focus:outline-violet-400 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                     onChange={handleChange}
                   />
@@ -121,15 +123,14 @@ const LoginForm = () => {
                 >
                   Login
                 </button>
-                <div className="flex items-center w-full my-6">
-                  <div className="flex-grow border-t border-gray-300"></div>
-                  <span className="px-4 text-gray-500 font-semibold">OR</span>
-                  <div className="flex-grow border-t border-gray-300"></div>
+                <div className="flex items-center w-full justify-center my-6">
+                  <hr className="w-1/2 bg-gray-50" />
+                  <span className="px-2 text-gray-500 text-xs ">OR</span>
+                  <hr className="w-1/2 bg-gray-50" />
                 </div>
-
-                <div className="flex justify-center">
-                  <GoogleAuthButton />
-                </div>
+                
+                <GoogleAuthButton text={"Log in with Google"}/>
+                
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{" "}
                   <a
@@ -140,6 +141,10 @@ const LoginForm = () => {
                   </a>
                 </p>
               </form>
+            </div>
+            <div className="w-1/2 max-sm:w-full max-sm:h-[150px] flex justify-center">
+              <img className="rounded-lg object-cover max-sm:object-center" src="https://cdn.pixabay.com/photo/2023/06/26/15/27/stones-8090026_1280.jpg" alt="" />
+            </div>
             </div>
           </div>
         </Vortex>
