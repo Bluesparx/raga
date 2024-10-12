@@ -57,9 +57,11 @@ const SignupForm = () => {
       <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
         {/* <NavbarDemo className="mb-4" /> */}
         <Vortex className="mt-20 pt-10 z-10">
-          <div className="w-full mx-auto rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div className="shadow shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8 bg-clip-padding backdrop-filter backdrop-blur-xl  bg-white/10 bg-opacity-30 rounded-lg text-white p-10 max-w-lg mx-auto ">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-100 md:text-2xl dark:text-white">
+          <div className="mx-auto rounded-lg dark:border md:mt-0 w-9/12 xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div className="shadow flex max-sm:flex-col-reverse  gap-10 shadow-violet-400 p-6 space-y-4 md:space-y-6 sm:p-8 bg-clip-padding backdrop-filter backdrop-blur-xl  bg-white/10 bg-opacity-30 rounded-lg text-white p-10  mx-auto ">
+              <div className="left w-1/2 max-sm:w-full">
+              <h1 className="text-4xl font-semibold mb-5"><span className="text-violet-400">Zen</span>Zone</h1>
+              <h1 className="text-lg font-medium mb-4 leading-tight tracking-tight text-gray-100 md:text-2xl dark:text-white">
                 Create an account
               </h1>
               <form
@@ -77,7 +79,7 @@ const SignupForm = () => {
                     type="text"
                     name="name"
                     id="name"
-                    className="bg-white/30 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-black"
+                    className="bg-white/30 text-black rounded-lg outline-none  focus:outline-violet-400 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-black"
                     placeholder="John Doe"
                     required
                     onChange={handleChange}
@@ -94,7 +96,7 @@ const SignupForm = () => {
                     type="email"
                     name="email"
                     id="email"
-                    className="bg-white/30 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-black"
+                    className="bg-white/30 text-black rounded-lg outline-none focus:outline-violet-400 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-black"
                     placeholder="name@company.com"
                     required
                     onChange={handleChange}
@@ -112,7 +114,7 @@ const SignupForm = () => {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className="bg-white/30 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-white/30 text-black rounded-lg outline-none focus:outline-violet-400 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                     onChange={handleChange}
                   />
@@ -129,7 +131,7 @@ const SignupForm = () => {
                     name="confirmPassword"
                     id="confirmPassword"
                     placeholder="••••••••"
-                    className="bg-white/30  text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-white/30  text-black rounded-lg outline-none focus:outline-violet-400 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                     onChange={handleChange}
                   />
@@ -141,7 +143,7 @@ const SignupForm = () => {
                         id="remember"
                         aria-describedby="remember"
                         type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 checked:bg-violet-400 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                       />
                     </div>
                     <div className="ml-3 text-sm">
@@ -166,15 +168,14 @@ const SignupForm = () => {
                 >
                   Sign up
                 </button>
-                <div className="flex items-center w-full my-6">
-                  <div className="flex-grow border-t border-gray-300"></div>
-                  <span className="px-4 text-gray-500 font-semibold">OR</span>
-                  <div className="flex-grow border-t border-gray-300"></div>
+                <div className="flex items-center w-full justify-center my-6">
+                  <hr className="w-1/2 bg-gray-50" />
+                  <span className="px-2 text-gray-500 text-xs ">OR</span>
+                  <hr className="w-1/2 bg-gray-50" />
                 </div>
+                
+                <GoogleAuthButton text={"Sign up with Google"}/>
 
-                <div className="flex justify-center">
-                  <GoogleAuthButton />
-                </div>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?{" "}
                   <a
@@ -185,11 +186,16 @@ const SignupForm = () => {
                   </a>
                 </p>
               </form>
+              </div>
+              <div className="w-1/2 max-sm:w-full max-sm:h-[150px] flex justify-center ">
+                <img className="object-cover rounded-lg" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fb6c8ee7-953e-4132-8a70-f7df09b6fa8e/dey3pb8-e86d3b07-bb73-4db9-87a5-950f6b866c76.png/v1/fill/w_1280,h_1600,q_80,strp/zenmode__by_mrscreativemind_dey3pb8-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTYwMCIsInBhdGgiOiJcL2ZcL2ZiNmM4ZWU3LTk1M2UtNDEzMi04YTcwLWY3ZGYwOWI2ZmE4ZVwvZGV5M3BiOC1lODZkM2IwNy1iYjczLTRkYjktODdhNS05NTBmNmI4NjZjNzYucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.dPsappzRtB7HE3IC2tgEPzBg5wyqYNznB2trof0TCf8" alt="" />
+              </div>
             </div>
           </div>
         </Vortex>
       </div>
     </>
+
   );
 }
 
