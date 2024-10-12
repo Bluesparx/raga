@@ -19,7 +19,7 @@ import { AuthProvider } from "./utils/authProvider.jsx";
 import BreathingGame from "./components/Pages/Breathing.jsx";
 
 const routeDefinitions = [
-  { path: "/", element: <Home /> },
+  { path: "/" , element: <Home /> },
   { path: "/login", element: <LoginForm /> },
   { path: "/register", element: <SignupForm /> },
   { path: "/mood", element: <MoodLogger /> },
