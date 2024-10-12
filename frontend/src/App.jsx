@@ -21,8 +21,8 @@ import BreathingGame from "./components/Pages/Breathing.jsx";
 
 const routeDefinitions = [
   { path: "/", element: <Home /> },
-  { path: "/login", element: <LoginForm /> },
-  { path: "/register", element: <SignupForm /> },
+  { path: "/login", element: <AuthenticatedRoute element={<LoginForm />} /> },
+  { path: "/register", element: <AuthenticatedRoute element={<SignupForm />} /> },
   { path: "/mood", element: <AuthenticatedRoute element={<MoodLogger />} /> },
   { path: "/sleep", element: <AuthenticatedRoute element={<SleepTracker />} /> },
   { path: "/joke", element: <AuthenticatedRoute element={<JokeGenerator />} /> },
