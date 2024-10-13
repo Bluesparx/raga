@@ -67,8 +67,9 @@ export const WavyBackground = ({
   };
 
   let animationId;
+  let currentBackgroundFill = backgroundFill;
   const render = () => {
-    ctx.fillStyle = backgroundFill || "black";
+    ctx.fillStyle = currentBackgroundFill || "black";
     ctx.globalAlpha = waveOpacity;
     ctx.fillRect(0, 0, w, h);
     drawWave(5);
@@ -78,7 +79,11 @@ export const WavyBackground = ({
   useEffect(() => {
     init();
     return () => cancelAnimationFrame(animationId);
-  }, []);
+  }, [backgroundFill]);
+
+  useEffect(() => {
+    currentBackgroundFill = backgroundFill;
+  }, [backgroundFill]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
