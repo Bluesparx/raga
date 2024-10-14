@@ -9,3 +9,18 @@
 body {
   overflow-x: hidden;
 }
+
+.control-btn>span {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+
+}
+
+.control-btn:hover>span {
+  opacity: 1;
+}
