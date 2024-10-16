@@ -4,6 +4,7 @@ import audio from '../../assets/meditation.mp3';
 import { WavyBackground } from '../ui/wavy-background';
 
 const BreathingGame = () => {
+  const [Time,setTime]=useState(0);
   const [phase, setPhase] = useState('Inhale');
   const [progress, setProgress] = useState(0);
   const [cycles, setCycles] = useState(0);
@@ -64,11 +65,32 @@ const BreathingGame = () => {
     setIsPlaying(!isPlaying);
   };
 
+  useEffect(() => {
+    let timer;
+    if (isPlaying) {
+      timer = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
+    } else if (!isPlaying && Time !== 0) {
+      clearInterval(timer);
+    }
+    return () => clearInterval(timer);
+  }, [isPlaying, Time]);
+
+  const formatTime = () => {
+    const minutes = Math.floor(Time / 60);
+    const seconds = Time % 60;
+    return `${minutes < 10 ? `0${minutes}` : minutes}:${
+      seconds < 10 ? `0${seconds}` : seconds
+    }`;
+  };
+
   const resetGame = () => {
     setIsPlaying(false);
     setPhase('Inhale');
     setProgress(0);
     setCycles(0);
+    setTime(0);
   };
 
   const toggleDarkMode = () => {
@@ -105,6 +127,7 @@ const BreathingGame = () => {
         </div>
 
 
+
         <div className="relative w-80 h-80">
           {phases.map((p, index) => (
             <div
@@ -115,6 +138,7 @@ const BreathingGame = () => {
               style={{ zIndex: phase === p.name ? 10 : 0 }}
             >
               <p className="text-3xl font-bold text-white">{p.name}</p>
+               <h4 className="text-3xl font-bold text-white">{formatTime()}</h4>
             </div>
           ))}
         </div>
@@ -126,6 +150,7 @@ const BreathingGame = () => {
               className="h-2 bg-green-500 rounded-full transition-all duration-100 ease-linear"
               style={{ width: `${progress}%` }}
             ></div>
+
           </div>
         </div>
 
