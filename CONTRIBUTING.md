@@ -7,14 +7,17 @@ Welcome to the ZenZone project! We appreciate your interest in contributing to o
 ### 1. Getting Started
 - **Fork the repository** and clone it to your local machine.
 - Create a new branch for your feature or bug fix:
+  
   ```bash
   git checkout -b feature-name
   ```
   or
+  
   ```bash
   git checkout -b bugfix-name
   ```
 - Regularly keep your fork updated with the main branch:
+  
   ```bash
   git pull upstream main
   ```
@@ -25,15 +28,21 @@ Welcome to the ZenZone project! We appreciate your interest in contributing to o
 #### Backend
 1. Clone the repository and navigate to the `backend` folder.
 2. Install dependencies:
+   
    ```bash
    npm install
    ```
-3. Create a `.env` file and add the following variables:
+4. Create a `.env` file and add the following variables:
+   
    ```
    MONGO_URI=your_mongo_db_uri
    JWT_SECRET=your_jwt_secret
+   PORT=5000
+   GMAIL=<ur email id>
+   APP_PASSWORD= <generate ur app password for the mail id>
    ```
-4. Start the server:
+6. Start the server:
+   
    ```bash
    npm run server
    ```
@@ -41,10 +50,24 @@ Welcome to the ZenZone project! We appreciate your interest in contributing to o
 #### Frontend
 1. Navigate to the `frontend` folder.
 2. Install dependencies:
+   
    ```bash
    npm install
    ```
-3. Run the app:
+4. Create an account on firebase and add the following variables to `.env` :
+   
+   ```bash
+    VITE_REACT_APP_API_KEY=  <api key>
+    VITE_REACT_APP_AUTH_DOMAIN= <domain>.firebaseapp.com
+    VITE_REACT_APP_PROJECT_ID= <project id>
+    VITE_REACT_APP_STORAGE_BUCKET= <storage bucket>.appspot.com
+    VITE_REACT_APP_MESSAGING_SENDER_ID= <sender id>
+    VITE_REACT_APP_APP_ID= < app id >
+    VITE_REACT_APP_MEASUREMENT_ID= <measurement id>
+    VITE_REACT_APP_API_HOST= https://zenzone.onrender.com
+   ```
+6. Run the app:
+   
    ```bash
    npm run dev
    ```
