@@ -6,6 +6,9 @@ import { Vortex } from "../ui/vortex";
 import { NavbarDemo } from "../NavbarDemo";
 import { toast } from "react-hot-toast"; // Import the toast function
 import GoogleAuthButton from "./GoogleAuthButton";
+import { MdOutlineVisibilityOff } from "react-icons/md"; //toggle visibility icon
+import { MdOutlineVisibility } from "react-icons/md";//toggle visibility icon
+
 const SignupForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -13,6 +16,9 @@ const SignupForm = () => {
     password: "",
     confirmPassword: "",
   });
+  const[showPassword,setShowPassword]=useState(false);
+  const[showConfirmPassword,setShowConfirmPassword]=useState(false);
+
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -102,7 +108,7 @@ const SignupForm = () => {
                     onChange={handleChange}
                   />
                 </div>
-                <div>
+                <div className="relative">
                   <label
                     htmlFor="password"
                     className="block mb-2 text-sm font-medium text-gray-200 dark:text-white"
@@ -110,7 +116,7 @@ const SignupForm = () => {
                     Password
                   </label>
                   <input
-                    type="password"
+                    type={showPassword?"text":"password"}
                     name="password"
                     id="password"
                     placeholder="••••••••"
@@ -118,8 +124,13 @@ const SignupForm = () => {
                     required
                     onChange={handleChange}
                   />
+                  <span className="absolute  right-2 bottom-3 cursor-pointer text-white text-xl" onClick={()=>setShowPassword((prev)=>!prev)} >
+                    {
+                      showPassword?<MdOutlineVisibility/>:<MdOutlineVisibilityOff/>
+                    }
+                  </span>
                 </div>
-                <div>
+                <div className="relative">
                   <label
                     htmlFor="confirmPassword"
                     className="block mb-2 text-sm font-medium text-gray-200 dark:text-white"
@@ -127,7 +138,7 @@ const SignupForm = () => {
                     Confirm Password
                   </label>
                   <input
-                    type="password"
+                    type={showConfirmPassword?"text":"password"}
                     name="confirmPassword"
                     id="confirmPassword"
                     placeholder="••••••••"
@@ -135,6 +146,11 @@ const SignupForm = () => {
                     required
                     onChange={handleChange}
                   />
+                  <span className="absolute  right-2 bottom-3 cursor-pointer text-white text-xl" onClick={()=>setShowConfirmPassword((prev)=>!prev)} >
+                    {
+                      showConfirmPassword?<MdOutlineVisibility/>:<MdOutlineVisibilityOff/>
+                    }
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">

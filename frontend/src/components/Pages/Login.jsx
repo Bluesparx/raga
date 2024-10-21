@@ -5,8 +5,11 @@ import { useAuth } from "../../utils/authProvider";
 import { Vortex } from "../ui/vortex";
 import { NavbarDemo } from "../NavbarDemo";
 import GoogleAuthButton from "./GoogleAuthButton";
+import { MdOutlineVisibilityOff } from "react-icons/md"; //toggle visibility icon
+import { MdOutlineVisibility } from "react-icons/md";//toggle visibility icon
 
 const LoginForm = () => {
+  const[showPassword,setShowPassword]=useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -74,7 +77,7 @@ const LoginForm = () => {
                     onChange={handleChange}
                   />
                 </div>
-                <div>
+                <div className="relative">
                   <label
                     htmlFor="password"
                     className="block mb-2 text-sm font-medium text-gray-200 dark:text-white"
@@ -82,7 +85,7 @@ const LoginForm = () => {
                     Password
                   </label>
                   <input
-                    type="password"
+                    type={showPassword?"text":"password"}
                     name="password"
                     id="password"
                     placeholder="••••••••"
@@ -90,6 +93,11 @@ const LoginForm = () => {
                     required
                     onChange={handleChange}
                   />
+                  <span className="absolute  right-2 bottom-3 cursor-pointer text-white text-xl" onClick={()=>setShowPassword((prev)=>!prev)} >
+                    {
+                      showPassword?<MdOutlineVisibility/>:<MdOutlineVisibilityOff/>
+                    }
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
