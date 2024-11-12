@@ -2,4 +2,4 @@
 /config
 .env
 *.env
-.env*
+
