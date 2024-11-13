@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import { createNoise3D } from "simplex-noise";
-import { motion } from "framer-motion";
+import React, {useEffect, useRef} from "react";
+import {createNoise3D} from "simplex-noise";
+import {motion} from "framer-motion";
 
 export const Vortex = (props) => {
   const canvasRef = useRef(null);
@@ -30,8 +30,8 @@ export const Vortex = (props) => {
   const HALF_PI = 0.5 * Math.PI;
   const TAU = 2 * Math.PI;
   const TO_RAD = Math.PI / 180;
-  const rand = n => n * Math.random();
-  const randRange = n => n - rand(2 * n);
+  const rand = (n) => n * Math.random();
+  const randRange = (n) => n - rand(2 * n);
   const fadeInOut = (t, m) => {
     let hm = 0.5 * m;
     return Math.abs(((t + hm) % m) - hm) / hm;
@@ -159,7 +159,7 @@ export const Vortex = (props) => {
   };
 
   const resize = (canvas, ctx) => {
-    const { innerWidth, innerHeight } = window;
+    const {innerWidth, innerHeight} = window;
 
     canvas.width = innerWidth;
     canvas.height = innerHeight;
@@ -213,15 +213,14 @@ export const Vortex = (props) => {
   return (
     <div className={`relative h-full w-full ${props.containerClassName}`}>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
         ref={containerRef}
-        className="absolute h-full w-full inset-0 z-0 bg-transparent flex items-center justify-center">
+        className="fixed h-full w-full inset-0 z-0 bg-transparent flex items-center justify-center"
+      >
         <canvas ref={canvasRef}></canvas>
       </motion.div>
-      <div className={`relative z-10 ${props.className}`}>
-        {props.children}
-      </div>
+      <div className={`relative z-10 ${props.className}`}>{props.children}</div>
     </div>
   );
 };
