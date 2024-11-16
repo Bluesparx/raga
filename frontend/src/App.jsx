@@ -5,7 +5,7 @@ import LoginForm from "./components/Pages/Login.jsx";
 import SignupForm from "./components/Pages/Signup.jsx";
 import { useAuth } from "./utils/authProvider.jsx";
 import JokeGenerator from "./components/Pages/JokeGenerator.jsx";
-import MoodCalendarPage from "./components/Pages/MoodCalendarPage.jsx";
+import CalendarPage from "./components/Pages/CalendarPage.jsx";
 import Dashboard from "./components/Pages/Dashboard.jsx";
 import MoodGraphPage from "./components/Pages/MoodGraphPage.jsx";
 import SleepGraphPage from "./components/Pages/SleepGraphPage.jsx";
@@ -26,7 +26,7 @@ const routeDefinitions = [
   { path: "/mood", element: <AuthenticatedRoute element={<MoodLogger />} /> },
   { path: "/sleep", element: <AuthenticatedRoute element={<SleepTracker />} /> },
   { path: "/joke", element: <AuthenticatedRoute element={<JokeGenerator />} /> },
-  { path: "/calendar", element: <AuthenticatedRoute element={<MoodCalendarPage />} /> },
+  { path: "/calendar", element: <AuthenticatedRoute element={<CalendarPage />} /> },
   { path: "/mgraph", element: <AuthenticatedRoute element={<MoodGraphPage />} /> },
   { path: "/sgraph", element: <AuthenticatedRoute element={<SleepGraphPage />} /> },
   { path: "/contact", element: <ContactUsPage /> },

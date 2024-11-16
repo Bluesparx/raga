@@ -4,7 +4,8 @@ import 'react-calendar/dist/Calendar.css';
 import { Vortex } from '../ui/vortex';
 import { Navbar2 } from '../Navbar2';
 import MoodCalendar from '../MoodCalendar';
-const MoodCalendarPage = () => {
+import SleepCalendar from '../SleepCalendar';
+const CalendarPage = () => {
 
     return (
         <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
@@ -33,6 +34,7 @@ const MoodCalendarPage = () => {
           >
            
            <MoodCalendar/>
+           <SleepCalendar/>
         </div>
         </div>
         </Vortex>
@@ -40,4 +42,4 @@ const MoodCalendarPage = () => {
     );
 };
 
-export default MoodCalendarPage;
+export default CalendarPage;
