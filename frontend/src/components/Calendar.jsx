@@ -92,11 +92,11 @@ const Calendar = () => {
 					if (view === 'month' && !isFutureDate(date)) {
 						const mood = getMoodForDate(date);
 						const sleep = getSleepForDate(date);
-						return <div className="text-sm">{mood.happiness} {sleep.duration ? `${sleep.duration}h` : ''}</div>; 
+						return <div className="text-sm font-light">{mood.happiness} {sleep.duration ? `${sleep.duration}h` : ''}</div>; 
 					}
 					return null; 
 				}}
-				className="bg-gray-800 text-white" 
+				className="bg-gray-800 text-white font-bold" 
 			/>
 			<div className="mt-4">
 				<h2 className="text-xl">Selected Date: {value.toLocaleDateString()}</h2>
