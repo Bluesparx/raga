@@ -21,7 +21,7 @@ const CalendarPage = () => {
           <div
             style={{
               width: "100%",
-              maxWidth: "500px",
+              maxWidth: "400px",
               padding: "40px",
               backgroundColor: "black",
               borderRadius: "12px",
