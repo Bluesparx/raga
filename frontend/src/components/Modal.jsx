@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const Modal = ({ isOpen, onClose, selectedDate, stress=0, description='', energy=0, happiness=0, calmness=0, focus=0, tags, date }) => {
+const Modal = ({ isOpen, onClose, selectedDate, moodDescription='', stress=0, energy=0, happiness=0, calmness=0, focus=0, sleepDescription='', duration=0, quality=0, tags, date }) => {
 
   useEffect(() => {
     if (isOpen && selectedDate) {
@@ -15,7 +15,7 @@ const Modal = ({ isOpen, onClose, selectedDate, stress=0, description='', energy
 
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Mood Records for {selectedDate.toLocaleDateString()}
+                Records for {selectedDate.toLocaleDateString()}
               </h3>
               <button
                 type="button"
@@ -27,8 +27,8 @@ const Modal = ({ isOpen, onClose, selectedDate, stress=0, description='', energy
               </button>
             </div>
 
-            <div className="p-4 md:p-5 space-y-4">
-              {!focus ? (
+            <div className="p-4 md:p-5 pb-2 md:pb-2 space-y-4">
+              {moodDescription == 'No mood recorded' ? (
                 <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                   No mood records available for this day.
                 </p>
@@ -39,7 +39,19 @@ const Modal = ({ isOpen, onClose, selectedDate, stress=0, description='', energy
                     <p><strong>Happiness:</strong> {happiness}</p>
                     <p><strong>Calmness:</strong> {calmness}</p>
                     <p><strong>Focus:</strong> {focus}</p>
-                    <p><strong>Description:</strong> {description}</p>
+                    <p><strong>Description:</strong> {moodDescription}</p>
+                  </div>
+              )}
+            </div>
+            <div className="p-4 md:p-5 pt-2 md:pt-2 space-y-4">
+              {sleepDescription == 'No sleep recorded' ? (
+                <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                  No sleep records available for this day.
+                </p>
+              ) : (
+                  <div className="text-gray-900 border-gray-200 pb-2 mb-2">
+                    <p><strong>Duration:</strong> {duration} hours</p>
+                    <p><strong>Quality:</strong> {quality}</p>
                   </div>
               )}
             </div>
