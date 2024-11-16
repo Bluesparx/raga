@@ -92,7 +92,7 @@ const Calendar = () => {
 					if (view === 'month' && !isFutureDate(date)) {
 						const mood = getMoodForDate(date);
 						const sleep = getSleepForDate(date);
-						return <div className="text-sm">{mood.happiness}{sleep.duration ? `|${sleep.duration}h` : ''}</div>; 
+						return <div className="text-sm">{mood.happiness} {sleep.duration ? `${sleep.duration}h` : ''}</div>; 
 					}
 					return null; 
 				}}
