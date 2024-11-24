@@ -42,7 +42,7 @@ const LoginForm = () => {
       navigate("/");
     } catch (error) {
       console.error("Could not log in:", error);
-      setError(error.message || "An error occurred. Please try again."); // Set error message in state
+      setError(error.message || "An error occurred. Please try again."); 
     }
   };
 
@@ -58,7 +58,7 @@ const LoginForm = () => {
             <h1 className="text-lg mb-4 font-medium leading-tight tracking-tight text-gray-100 md:text-2xl dark:text-white">
                 Login to your account
               </h1>
-              {error && <div className="text-red-500 mb-4">{error}</div>} {/* Display error message */}
+              {error && <div className="text-red-500 mb-4">{error}</div>}
               <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label
