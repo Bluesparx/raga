@@ -46,6 +46,144 @@ Visualize mood and sleep trends over time.
 - **Backend:** Node.js, Express, MongoDB, JWT Authentication
 - **Database:** MongoDB for storing user data, posts, mood/sleep logs.
 
+## File structure 
+ 
+ ``` 
+├── CONTRIBUTING.md
+├── backend
+│   ├── DB
+│   │   └── Database.js
+│   ├── Dockerfile
+│   ├── Routers
+│   │   ├── moodAnalysis.js
+│   │   ├── moodRoutes.js
+│   │   ├── postRoutes.js
+│   │   ├── sleepRoutes.js
+│   │   └── userRoutes.js
+│   ├── app.js
+│   ├── constants.js
+│   ├── controllers
+│   │   ├── moodController.js
+│   │   ├── postController.js
+│   │   ├── sleepController.js
+│   │   └── userController.js
+│   ├── middleware
+│   │   └── authMiddleware.js
+│   ├── models
+│   │   ├── MoodModel.js
+│   │   ├── PostModel.js
+│   │   ├── SleepModel.js
+│   │   └── UserModel.js
+│   ├── package-lock.json
+│   └── package.json
+├── docker-compose.yml
+├── frontend
+│   ├── Dockerfile
+│   ├── README.md
+│   ├── components.json
+│   ├── database-debug.log
+│   ├── dataconnect
+│   │   ├── connector
+│   │   │   ├── connector.yaml
+│   │   │   ├── mutations.gql
+│   │   │   └── queries.gql
+│   │   ├── dataconnect.yaml
+│   │   └── schema
+│   │       └── schema.gql
+│   ├── dataconnect-debug.log
+│   ├── dataconnect-generated
+│   │   └── js
+│   │       └── default-connector
+│   │           ├── esm
+│   │           │   ├── index.esm.js
+│   │           │   └── package.json
+│   │           ├── index.cjs.js
+│   │           ├── index.d.ts
+│   │           └── package.json
+│   ├── eslint.config.js
+│   ├── firebase.json
+│   ├── firestore-debug.log
+│   ├── index.css
+│   ├── index.html
+│   ├── nginx.conf
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── public
+│   │   ├── 404.html
+│   │   ├── enso.svg
+│   │   ├── index.html
+│   │   └── vite.svg
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── assets
+│   │   │   ├── meditation.mp3
+│   │   │   └── react.svg
+│   │   ├── components
+│   │   │   ├── AboutUs.jsx
+│   │   │   ├── AddPost.jsx
+│   │   │   ├── ContactUsForm.jsx
+│   │   │   ├── DiscreteSliderMarks.jsx
+│   │   │   ├── ModalMood.jsx
+│   │   │   ├── MoodCalendar.jsx
+│   │   │   ├── MoodGraph.jsx
+│   │   │   ├── Navbar2.jsx
+│   │   │   ├── NavbarDemo.jsx
+│   │   │   ├── Pages
+│   │   │   │   ├── AboutUsPage.jsx
+│   │   │   │   ├── Breathing.jsx
+│   │   │   │   ├── ContactUsPage.jsx
+│   │   │   │   ├── Dashboard.jsx
+│   │   │   │   ├── ForgotPassword.jsx
+│   │   │   │   ├── Home.jsx
+│   │   │   │   ├── JokeGenerator.jsx
+│   │   │   │   ├── Login.jsx
+│   │   │   │   ├── MoodCalendarPage.jsx
+│   │   │   │   ├── MoodDemo.jsx
+│   │   │   │   ├── MoodGraphPage.jsx
+│   │   │   │   ├── MoodLogger.jsx
+│   │   │   │   ├── PageNotFound.jsx
+│   │   │   │   ├── Signup.jsx
+│   │   │   │   ├── SleepGraphPage.jsx
+│   │   │   │   └── SleepTracker.jsx
+│   │   │   ├── PostForm.jsx
+│   │   │   ├── PostList.jsx
+│   │   │   ├── Postitem.jsx
+│   │   │   ├── SleepGraph.jsx
+│   │   │   ├── ThreeDCardDemo.jsx
+│   │   │   ├── VortexDemoSecond.jsx
+│   │   │   ├── WavyBackgroundDemo.jsx
+│   │   │   ├── shimmer.css
+│   │   │   └── ui
+│   │   │       ├── 3d-card.jsx
+│   │   │       ├── input.jsx
+│   │   │       ├── label.jsx
+│   │   │       ├── modal.jsx
+│   │   │       ├── navbar-menu.jsx
+│   │   │       ├── vortex.jsx
+│   │   │       └── wavy-background.jsx
+│   │   ├── index.css
+│   │   ├── lib
+│   │   │   └── utils.js
+│   │   ├── main.jsx
+│   │   └── utils
+│   │       ├── apiRequest.js
+│   │       ├── authProvider.jsx
+│   │       ├── navbarSwitch.jsx
+│   │       └── useAuthContext.js
+│   ├── storage.rules
+│   ├── tailwind.config.js
+│   ├── vercel.json
+│   ├── vite.config.js
+│   └── y
+│       ├── 404.html
+│       └── index.html
+├── package-lock.json
+├── readme.md
+└── sentimentmodel.py
+ ```
+ 
 ## Setup Instructions
 1. Clone the repository and install dependencies in both backend and frontend folder.
 2. Install dependencies of both directories:
